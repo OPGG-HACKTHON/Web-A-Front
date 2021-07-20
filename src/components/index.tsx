@@ -1,7 +1,6 @@
 import React from "react";
-import { NextPage } from "next";
 
-const IndexComponent: NextPage = () => {
+const IndexComponent: React.FC = () => {
   return (
     <>
       <div>indexCompoennt</div>
