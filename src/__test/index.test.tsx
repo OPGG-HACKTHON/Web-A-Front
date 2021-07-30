@@ -1,6 +1,6 @@
 import React from "react";
 // testing
-import IndexPage from "./index";
+import IndexPage from "../pages/index";
 import { render } from "@testing-library/react";
 
 describe("<IndexPage>", () => {
