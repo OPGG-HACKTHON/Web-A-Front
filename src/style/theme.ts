@@ -6,6 +6,9 @@ const palette = {
     main: "#836EFF",
     dark: "#422DB8",
   },
+  secondary: {
+    main: "#FFAA04",
+  },
   grayScale: {
     100: "#FFFFFF",
     200: "#DFDFDF",
