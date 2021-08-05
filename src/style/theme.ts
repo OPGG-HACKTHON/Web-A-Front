@@ -1,32 +1,23 @@
 import { DefaultTheme } from "styled-components";
 
 const palette = {
-  black: "#000000",
-  white: "#FFFFFF",
-  yellow: "#FFEB60",
-  subYellow: "FFB904",
-  purple: "#A451F7",
-  subPurple: "#534165",
-  orange: "#EB683F",
-  red: "#DF1D1D",
-  blue: "#0078D4",
+  primary: {
+    light: "#9A75F7",
+    main: "#836EFF",
+    dark: "#422DB8",
+  },
   grayScale: {
-    50: "#FFFFFF",
-    100: "#DFDFDF",
-    200: "#C1C1C1",
+    100: "#FFFFFF",
+    200: "#DFDFDF",
     300: "#A5A5A5",
-    400: "#8B8B8B",
-    500: "#6F6F6F",
-    600: "#555555",
-    700: "#3D3D3D",
-    800: "#242424",
-    900: "#000000",
+    400: "#6F6F6F",
+    500: "#555555",
+    600: "#3D3D3D",
+    700: "#000000",
   },
   backgroundColors: {
-    50: "#F7F7F7",
-    100: "#F5F4F3",
-    200: "#FAFAF6",
-    300: "#F6F4EE",
+    100: "#F6F6F6",
+    200: "#F5F4F3",
   },
 };
 const devides = {
