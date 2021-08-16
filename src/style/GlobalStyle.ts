@@ -7,9 +7,8 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-
-  body {
-    font-size: 10px;
+  html {
+    font-size: 10px; 
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   }
 `;
