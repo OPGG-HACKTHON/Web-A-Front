@@ -15,7 +15,7 @@ const datas: Array<dataType> = [
     id: 1,
     title: "hi",
     thumbnail: "https://picsum.photos/1000?random=1",
-    tag: ["hihi", "hihi"],
+    tag: ["hihi2", "hihi"],
   },
   {
     id: 2,
