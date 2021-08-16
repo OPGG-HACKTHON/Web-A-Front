@@ -1,19 +1,47 @@
-import styled from "styled-components";
 import { IIndexTitleProps } from "./IndexTitle.type";
-
-const UnderLine = styled.div`
-  border: 0.2rem solid ${({ theme }) => theme.palette.grayScale[500]};
-`;
+import styled from "styled-components";
 
 const Title = styled.div`
-  font-size: 2rem;
+  display: flex;
+  font-size: 2.8rem;
+  line-height: 3.5rem;
+`;
+
+const IndexContainer = styled.div`
+  display: flex;
 `;
 
 const SelectedIndex = styled.div`
-  color: red;
-`;
-const Flex = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  border: 0.2rem solid ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.main};
+`;
+
+const Index = styled.div`
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+`;
+
+const NonSelectedIndex = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  color: ${({ theme }) => theme.palette.primary.main};
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.grayScale[500]};
 `;
 
 const IndexTitle: React.FC<IIndexTitleProps> = ({
@@ -26,23 +54,22 @@ const IndexTitle: React.FC<IIndexTitleProps> = ({
   const indexList = [...Array(Math.ceil(total / onScreenCount)).keys()];
 
   return (
-    <>
-      <Flex>
-        <Title>{title}</Title>
+    <TitleContainer>
+      <Title>{title}</Title>
+      <IndexContainer>
         {indexList.map((i: number) =>
           selectedIndex === i ? (
-            <SelectedIndex key={i} onClick={() => clickHandler(i)}>
-              {i}
+            <SelectedIndex key={i}>
+              <Index>{i}</Index>
             </SelectedIndex>
           ) : (
-            <div key={i} onClick={() => clickHandler(i)}>
-              {i}
-            </div>
+            <NonSelectedIndex key={i} onClick={() => clickHandler(i)}>
+              <Index>{i}</Index>
+            </NonSelectedIndex>
           )
         )}
-      </Flex>
-      <UnderLine />
-    </>
+      </IndexContainer>
+    </TitleContainer>
   );
 };
 
