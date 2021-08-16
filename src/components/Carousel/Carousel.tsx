@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+// styled
+import {
+  WholeContainer,
+  CarouselContainer,
+  CarouselImageContainer,
+  Container,
+} from "./Carousel.style";
+// custom-components
 import { IndexTitle } from "components/IndexTitle";
+import { CarouselCard } from "./CarouselCard";
 
 export type dataType = {
   id: number;
@@ -50,59 +58,30 @@ const Carousel: React.FC<{ datas: Array<dataType>; onScreenCount: number }> = ({
   };
 
   return (
-    <CarouselContainer>
+    <WholeContainer>
       <IndexTitle
-        title="이거 어때요?"
+        title="이런 인디칩 어때요?"
         total={datas.length}
         clickHandler={handleSelectedImageChange}
         {...{ selectedIndex, setSelectedIndex, onScreenCount }}
       />
-      <CarouselImageContainer width={600}>
-        {onScreenCountArr.map((dataArr, idx) => (
-          <Container
-            key={idx}
-            ref={(el: HTMLDivElement) => (carouselItemsRef.current[idx] = el)}>
-            {dataArr.map((image, idx) => (
-              <Image
-                onClick={() => handleSelectedImageChange(idx)}
-                style={{ backgroundImage: `url(${image.thumbnail})` }}
-                key={image.id}
-              />
-            ))}
-          </Container>
-        ))}
-      </CarouselImageContainer>
-    </CarouselContainer>
+      <CarouselContainer>
+        <CarouselImageContainer width={920}>
+          {onScreenCountArr.map((dataArr, idx) => (
+            <Container
+              key={idx}
+              ref={(el: HTMLDivElement) =>
+                (carouselItemsRef.current[idx] = el)
+              }>
+              {dataArr.map((data) => (
+                <CarouselCard key={data.id} {...{ data }} />
+              ))}
+            </Container>
+          ))}
+        </CarouselImageContainer>
+      </CarouselContainer>
+    </WholeContainer>
   );
 };
-
-const CarouselContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Image = styled.div`
-  height: 150px;
-  min-width: 150px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-interface CarouselImageContainerProps {
-  width: number;
-}
-
-const CarouselImageContainer = styled.div<CarouselImageContainerProps>`
-  display: flex;
-  max-width: ${(props) => `${props.width}px`};
-  overflow-x: hidden;
-`;
-
-const Container = styled.div`
-  display: flex;
-  min-width: 600px;
-  height: 500px;
-`;
 
 export default Carousel;
