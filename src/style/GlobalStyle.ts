@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px; 
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   }
+
+  body {
+    min-width: 1024px;
+  }
 `;
 
 export default GlobalStyle;

@@ -2,6 +2,7 @@ import React from "react";
 
 import { Carousel } from "components/Carousel";
 import { NextPage } from "next";
+import Roulette from "components/Main/Roulette";
 
 export type dataType = {
   id: number;
@@ -82,6 +83,7 @@ const datas: Array<dataType> = [
 const IndexPage: NextPage = () => {
   return (
     <>
+      <Roulette />
       <Carousel {...{ datas }} onScreenCount={4} />
     </>
   );
