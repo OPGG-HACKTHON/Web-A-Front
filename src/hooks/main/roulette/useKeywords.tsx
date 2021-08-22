@@ -30,7 +30,7 @@ const useKeywords = () => {
     [keywords, selectedKeywords]
   );
 
-  return { keywords, selectedKeywords, handleOnClick };
+  return { keywords, handleOnClick };
 };
 
 export default useKeywords;

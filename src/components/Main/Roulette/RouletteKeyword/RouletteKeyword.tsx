@@ -3,7 +3,7 @@ import useKeywords from "hooks/main/roulette/useKeywords";
 import { KeywordItem, KeywordWrapper } from "./RouletteKeyword.style";
 
 const RouletteKeyword: React.FC = () => {
-  const { keywords, selectedKeywords, handleOnClick } = useKeywords();
+  const { keywords, handleOnClick } = useKeywords();
 
   return (
     <KeywordWrapper>
