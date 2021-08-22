@@ -1,5 +1,3 @@
-import { DefaultTheme } from "styled-components";
-
 const palette = {
   primary: {
     light: "#9A75F7",
@@ -30,10 +28,14 @@ const devides = {
 };
 const fontSizes = {};
 const fontWeight = {};
-const theme: DefaultTheme = {
+
+const theme = {
   palette,
   devides,
   fontSizes,
   fontWeight,
 };
+
 export default theme;
+
+export type Theme = typeof theme;
