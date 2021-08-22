@@ -1,9 +1,6 @@
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import debounce from "debounce";
 import { useState } from "react";
 
-import logo from "assets/images/logo.svg";
 import tooltip from "assets/images/roulette/tooltip.svg";
 
 import {
@@ -15,8 +12,7 @@ import {
   RouletteWrapper,
 } from "./Roulette.style";
 import RouletteKeyword from "./RouletteKeyword";
-
-const RoluletteBubble = dynamic(() => import("./RoluletteBubble"));
+import RoluletteBubble from "./RoluletteBubble";
 
 const Roulette: React.FC = () => {
   const [isTooltipShow, setIsTooltipShow] = useState<boolean>(false);
@@ -29,7 +25,6 @@ const Roulette: React.FC = () => {
 
   return (
     <RouletteWrapper>
-      <Image src={logo} height={27} />
       <RouletteContent>
         <RouletteTitle>인디칩 키워드를 골라보세요!</RouletteTitle>
         <RouletteSubTitleWrapper>
