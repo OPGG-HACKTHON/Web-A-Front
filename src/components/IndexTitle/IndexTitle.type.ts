@@ -4,4 +4,5 @@ export interface IIndexTitleProps {
   clickHandler: (idx: number) => void;
   selectedIndex: number;
   onScreenCount: number;
+  withoutIndex?: boolean;
 }
