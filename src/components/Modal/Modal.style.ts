@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 interface IVisibleProps {
   visible: boolean;
 }
@@ -30,9 +29,4 @@ const ModalOverlay = styled.div<IVisibleProps>`
   z-index: 999;
 `;
 
-const ModalInner = styled.div`
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-`;
-
-export { ModalWrapper, ModalInner, ModalOverlay };
+export { ModalWrapper, ModalOverlay };

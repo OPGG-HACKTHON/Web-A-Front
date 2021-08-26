@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 // Type
 import { IModalProps } from "./Modal.type";
 // Styled
-import { ModalOverlay, ModalInner, ModalWrapper } from "./Modal.style";
-// Custom-Components
+import { ModalOverlay, ModalWrapper } from "./Modal.style";
 
 const Modal: React.FC<IModalProps> = ({ onClose, visible, children }) => {
   const onMaskClick = (e: React.MouseEvent) => {
@@ -23,9 +22,7 @@ const Modal: React.FC<IModalProps> = ({ onClose, visible, children }) => {
     <>
       <ModalOverlay {...{ visible }} />
       <ModalWrapper onClick={onMaskClick} tabIndex={-1} visible={visible}>
-        <ModalInner tabIndex={0} className="modal-inner">
-          {children}
-        </ModalInner>
+        {children}
       </ModalWrapper>
     </>
   );
