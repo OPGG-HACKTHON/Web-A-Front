@@ -91,16 +91,22 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
             />
           ))}
           <div style={{ position: "absolute", left: "22rem", top: "12rem" }}>
-            <ArrowBtn left white onClick={handleLeftClick}></ArrowBtn>
+            <ArrowBtn left white onClick={handleLeftClick} />
           </div>
           <div style={{ position: "absolute", right: "22rem", top: "12rem" }}>
-            <ArrowBtn white onClick={handleRightClick}></ArrowBtn>
+            <ArrowBtn white onClick={handleRightClick} />
           </div>
         </CarouselImageContainer>
       </CarouselContainer>
       <Modal {...{ visible }} onClose={() => setVisible(false)}>
         <PrewviewCarouselModal
-          {...{ selectedIndex, setSelectedIndex, thumbnailListState }}
+          {...{
+            selectedIndex,
+            thumbnailListState,
+            handleLeftClick,
+            handleRightClick,
+            handleModalClose: () => setVisible(false),
+          }}
         />
       </Modal>
     </WholeContainer>
