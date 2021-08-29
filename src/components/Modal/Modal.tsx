@@ -10,13 +10,11 @@ const Modal: React.FC<IModalProps> = ({ onClose, visible, children }) => {
   };
 
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    if (visible) document.body.style.cssText = `overflow: hidden`;
     return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = `position: ""; top: "";`;
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      document.body.style.cssText = `overflow: ""`;
     };
-  }, []);
+  }, [visible]);
 
   return (
     <>
