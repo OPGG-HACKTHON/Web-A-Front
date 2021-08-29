@@ -16,7 +16,16 @@ const IndexTitle: React.FC<IIndexTitleProps> = ({
   clickHandler,
   selectedIndex,
   onScreenCount,
+  withoutIndex,
 }) => {
+  if (withoutIndex)
+    return (
+      <TitleContainer>
+        <Title>{title}</Title>
+        <IndexContainer />
+      </TitleContainer>
+    );
+
   const indexList = [...Array(Math.ceil(total / onScreenCount)).keys()];
 
   return (
