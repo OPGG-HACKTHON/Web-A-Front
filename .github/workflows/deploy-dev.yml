@@ -1,0 +1,28 @@
+name: deploy
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+env:
+  prod_CLOUDFRONT: ${{ secrets.PROD_CLOUDFRONT }}
+  dev_CLOUDFRONT: ${{ secrets.DEV_CLOUDFRONT }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install Packages
+        run: yarn
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET }}
+          aws-region:  ap-northeast-2
+      - name: Deploy Next.js app
+        run: yarn deploy:dev

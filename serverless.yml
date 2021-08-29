@@ -1,0 +1,14 @@
+stage: ${env.STAGE}
+jampick-web:
+  component: "@sls-next/serverless-component@3.2.0"
+  inputs:
+    useServerlesstrace: false
+    policy: arn:aws:iam::159698424543:policy/jampickweb-policy
+    bucketName: jampickweb-${stage}
+    buckerRegion: ap-northeast-2
+    cloudfront:
+      distributionId: ${env.${stage}_CLOUDFRONT}
+    name:
+      defaultLambda: jampickweb-default-lambda-${stage}
+      apiLambda: jampickweb-api-lambda-${stage}
+      imageLambda: jampickweb-image-lambda-${stage}
