@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-dev
 on:
   push:
     branches: [develop]
@@ -6,8 +6,9 @@ on:
 env:
   prod_CLOUDFRONT: ${{ secrets.PROD_CLOUDFRONT }}
   dev_CLOUDFRONT: ${{ secrets.DEV_CLOUDFRONT }}
+  SERVER_URL: ${{ secrets.SERVER_URL }}
 jobs:
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
