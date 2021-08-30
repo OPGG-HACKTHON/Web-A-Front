@@ -17,9 +17,9 @@ const palette = {
     700: "#000000",
   },
   backgroundColors: {
-    100: "#F6F6F6",
-    200: "#F5F4F3",
-    300: "0F0F15",
+    light: "#F6F6F6",
+    dark: "#0F0F15",
+    main: "#161623",
   },
 };
 const devides = {
