@@ -1,7 +1,8 @@
 import React from "react";
 import { NextPage } from "next";
-
 import Axios from "axios";
+
+import GameInfo from "components/About/GameInfo";
 
 type AboutPageProps = {
   item: {
@@ -11,7 +12,11 @@ type AboutPageProps = {
 };
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
-  return <h3>Game Info {item.id}</h3>;
+  return (
+    <>
+      <GameInfo />
+    </>
+  );
 };
 
 AboutPage.getInitialProps = async (ctx) => {
