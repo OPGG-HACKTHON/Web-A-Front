@@ -1,4 +1,4 @@
-import useRoulette from "hooks/main/roulette/useRoulette";
+import { useRoulette } from "hooks/main";
 
 import { RoulettePlayWrapper } from "./RoulettePlay.style";
 import RoulettePlayIcons from "./RoulettePlayIcons";

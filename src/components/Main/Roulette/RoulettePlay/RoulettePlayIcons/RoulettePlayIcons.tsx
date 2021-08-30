@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 
 import keywordL from "assets/images/roulette/keyword_l.svg";
@@ -17,7 +18,6 @@ import {
   RoulettePlayIconsImg,
   RoulettePlayIconsImgWrapper,
 } from "./RoulettePlayIcons.style.ts";
-import React from "react";
 
 interface IRoulettePlayIconsProps {
   count: number;
@@ -79,7 +79,7 @@ const RoulettePlayIcons: React.FC<IRoulettePlayIconsProps> = ({
       {[...Array(3)].map((_v, i) => (
         <React.Fragment key={i}>
           {getIconOrder(i) <= count ? (
-            <RoulettePlayIconsImg {...{ position }}>
+            <RoulettePlayIconsImg isLeft={position === "left"}>
               <RoulettePlayIconsContainer>
                 <Image src={position === "left" ? keywordL : keywordR} />
                 <RoulettePlayIconsImgWrapper>
@@ -88,7 +88,7 @@ const RoulettePlayIcons: React.FC<IRoulettePlayIconsProps> = ({
               </RoulettePlayIconsContainer>
             </RoulettePlayIconsImg>
           ) : (
-            <RoulettePlayIconsImg {...{ position }}>
+            <RoulettePlayIconsImg isLeft={position === "left"}>
               <Image
                 src={position === "left" ? keywordEmptyL : keywordEmptyR}
               />

@@ -19,10 +19,9 @@ export const RoulettePlayIconsImgWrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const RoulettePlayIconsImg = styled.div<{ position: "left" | "right" }>`
-  ${({ position }) => (position === "left" ? "margin-left: 2.6rem" : "")};
+export const RoulettePlayIconsImg = styled.div<{ isLeft: boolean }>`
+  ${({ isLeft }) => (isLeft ? "margin-left: 2.6rem" : "")};
   &:nth-child(2) {
-    ${({ position }) =>
-      position === "left" ? "margin: 0rem" : "margin-left: 2.6rem"};
+    ${({ isLeft }) => (isLeft ? "margin: 0rem" : "margin-left: 2.6rem")};
   }
 `;
