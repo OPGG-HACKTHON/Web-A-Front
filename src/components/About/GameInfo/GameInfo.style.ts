@@ -25,25 +25,26 @@ export const GameInfoHeader = styled.div`
 export const GameInfoContent = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 45rem;
 `;
 
 export const GameInfoTitle = styled.h3`
   font-size: 3.2rem;
   font-weight: 700;
+  line-height: 4rem;
   margin-bottom: 5.5rem;
   color: ${({ theme }) => theme.palette.grayScale[100]};
 `;
 export const GameInfoHashTags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 45rem;
 `;
 
-export const GameInfoImg = styled.div`
+export const GameInfoImg = styled.div<{ url: string }>`
   width: 46rem;
   height: 21.5rem;
   border-radius: 1rem;
-  background: ${({ theme }) => theme.palette.grayScale[300]};
+  background-image: url(${({ url }) => url});
 `;
 
 export const GameInfoBox = styled.div`

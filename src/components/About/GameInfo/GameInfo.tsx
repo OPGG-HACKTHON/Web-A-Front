@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { AboutPageProps } from "pages/about/[id]";
+
 import GameInfoHashtag from "./GameInfoHashtag";
 import GameInfoMeta from "./GameInfoMeta";
 
@@ -15,31 +17,31 @@ import {
   GameInfoBoxContent,
 } from "./GameInfo.style";
 
-const dummyData = ["액션", "캐주얼", "인디"];
+const GameInfo = ({ item }: AboutPageProps) => {
+  const { name, genres, release_date, short_description, header_image } = item;
 
-const GameInfo = () => {
   return (
     <GameInfoWrapper>
       <GameInfoContainer>
         <GameInfoHeader>
           <GameInfoContent>
-            <GameInfoTitle>OverCooked2 !</GameInfoTitle>
+            <GameInfoTitle>{name ? name : "이름 없음"}</GameInfoTitle>
             <GameInfoHashTags>
-              {dummyData.map((text, idx) => (
+              {genres.map((text, idx) => (
                 <GameInfoHashtag key={idx} text={text} />
               ))}
             </GameInfoHashTags>
           </GameInfoContent>
-          <GameInfoImg />
+          <GameInfoImg url={header_image} />
         </GameInfoHeader>
 
         <GameInfoBox>
           <GameInfoBoxContent>
-            <GameInfoMeta title={"게임장르"} desc={"액션, 캐주얼, 인디"} />
-            <GameInfoMeta title={"게임장르"} desc={"액션, 캐주얼, 인디"} />
+            <GameInfoMeta title={"게임 장르"} desc={genres.join(", ")} />
+            <GameInfoMeta title={"출시 날짜"} desc={release_date} />
           </GameInfoBoxContent>
           <GameInfoBoxContent>
-            <GameInfoMeta title={"게임장르"} desc={"액션, 캐주얼, 인디"} />
+            <GameInfoMeta title={"게임 소개"} desc={short_description} />
           </GameInfoBoxContent>
         </GameInfoBox>
       </GameInfoContainer>
