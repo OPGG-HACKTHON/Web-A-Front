@@ -10,6 +10,7 @@ export const RouletteWrapper = styled.section`
   height: 112.6rem;
   background-image: url("/roulette/background.png");
   background-size: cover;
+  background-position: center;
 `;
 
 export const RouletteContent = styled.div`
