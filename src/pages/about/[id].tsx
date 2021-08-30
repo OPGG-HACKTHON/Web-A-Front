@@ -1,26 +1,42 @@
 import React from "react";
+import Axios from "axios";
 import { NextPage } from "next";
 
-import Axios from "axios";
+import server from "config/server";
+import { PreviewCarousel } from "components/PreviewCarousel";
+import { VideoCarousel } from "components/VideoCarousel";
 
 type AboutPageProps = {
   item: {
     id: number;
-    //...
+    name: string;
+    short_description: string;
+    header_image: string;
+    release_date: string;
+    genres: Array<string>;
+    screenshots: Array<string>;
+    movies: Array<string>;
   };
 };
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
-  return <h3>Game Info {item.id}</h3>;
+  return (
+    <>
+      <VideoCarousel videos={item.movies} />
+      <PreviewCarousel thumbnailList={item.screenshots} />
+    </>
+  );
 };
 
 AboutPage.getInitialProps = async (ctx) => {
   const id = ctx.query.id;
 
   //test API
-  const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
+  const apiUrl = `${server}/api/detail/${id}`;
   const res = await Axios.get(apiUrl);
-  const data = res.data;
+  const {
+    data: { data },
+  } = res;
 
   return { item: data };
 };
