@@ -1,7 +1,8 @@
 import React from "react";
-// type
-import { IPreviewCarouselModal } from "./PreviewCarouselModal.type";
-// styled
+import Image from "next/image";
+
+import close from "assets/images/close.svg";
+
 import {
   Dot,
   PickedImg,
@@ -12,10 +13,16 @@ import {
   PreviewImgWrapper,
   CloseIconWrapper,
 } from "./PreviewCarouselModal.style";
-// custom-components
+
 import { ArrowBtn } from "components/ArrowBtn";
-// icons
-import { CloseIcon } from "assets/icons";
+
+export interface IPreviewCarouselModal {
+  selectedIndex: number;
+  thumbnailListState: Array<string>;
+  handleLeftClick: () => void;
+  handleRightClick: () => void;
+  handleModalClose: () => void;
+}
 
 const PrewviewCarouselModal: React.FC<IPreviewCarouselModal> = ({
   selectedIndex,
@@ -35,7 +42,7 @@ const PrewviewCarouselModal: React.FC<IPreviewCarouselModal> = ({
             {selectedIndex} / {thumbnailListState.length - 2}
           </IndexWrapper>
           <CloseIconWrapper onClick={handleModalClose}>
-            <CloseIcon width="1.5rem" height="1.5rem" />
+            <Image src={close} height={15} width={15} />
           </CloseIconWrapper>
         </PreviewImgHeader>
         <PickedImg
@@ -46,7 +53,10 @@ const PrewviewCarouselModal: React.FC<IPreviewCarouselModal> = ({
         <DotWrapper>
           {thumbnailListState.map((_, i) =>
             i === 0 || i === thumbnailListState.length - 1 ? null : (
-              <Dot selected={i === selectedIndex} />
+              <Dot
+                key={`${thumbnailListState[i]}-${i}`}
+                selected={i === selectedIndex}
+              />
             )
           )}
         </DotWrapper>
