@@ -7,7 +7,7 @@ export const GameInfoWrapper = styled.section`
   justify-content: center;
   width: 100%;
   padding: 20rem 0 5rem 0;
-  background: ${({ theme }) => theme.palette.backgroundColors["dark"]};
+  background: ${({ theme }) => theme.palette.backgroundColors.dark};
 `;
 
 export const GameInfoContainer = styled.div`
@@ -51,7 +51,7 @@ export const GameInfoBox = styled.div`
   display: flex;
   width: 100%;
   padding: 4.1rem 9.5rem;
-  background: ${({ theme }) => theme.palette.backgroundColors["main"]};
+  background: ${({ theme }) => theme.palette.backgroundColors.main};
 `;
 
 export const GameInfoBoxContent = styled.div`

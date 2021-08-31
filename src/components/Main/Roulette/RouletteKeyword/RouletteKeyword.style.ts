@@ -21,7 +21,7 @@ export const KeywordItem = styled.button<{ isSelected: boolean }>`
   background: ${({ theme, isSelected }) =>
     isSelected
       ? theme.palette.primary.main
-      : theme.palette.backgroundColors["light"]};
+      : theme.palette.backgroundColors.light};
   color: ${({ theme, isSelected }) =>
     isSelected ? theme.palette.grayScale[100] : theme.palette.grayScale[600]};
 `;
