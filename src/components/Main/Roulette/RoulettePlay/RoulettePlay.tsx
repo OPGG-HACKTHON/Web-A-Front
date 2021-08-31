@@ -32,10 +32,7 @@ const RoulettePlay: React.FC = () => {
       <RoulettePlayContainer>
         <RoulettePlayIcons count={selectedCount} position="left" />
         <RoulettePlayContent
-          item={roulette}
-          skip={skip}
-          waiting={waiting}
-          onClickSkip={onClickSkip}
+          {...{ skip, waiting, onClickSkip, item: roulette }}
         />
         <RoulettePlayIcons count={selectedCount} position="right" />
       </RoulettePlayContainer>
