@@ -5,7 +5,7 @@ export const RoulettePlayContentWrapper = styled.div`
   position: relative;
   width: 46rem;
   height: 21.5rem;
-  background-color: ${({ theme }) => theme.palette.backgroundColors[100]};
+  background-color: ${({ theme }) => theme.palette.grayScale[700]};
   overflow: hidden;
 `;
 
