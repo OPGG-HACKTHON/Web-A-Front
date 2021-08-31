@@ -17,7 +17,7 @@ export interface AboutPageProps {
 }
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
-  return <GameInfo item={item} />;
+  return <GameInfo {...{ item }} />;
 };
 
 AboutPage.getInitialProps = async (ctx) => {
