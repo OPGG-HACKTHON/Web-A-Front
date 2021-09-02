@@ -33,25 +33,30 @@ const RoulettePlayContent: React.FC<IRoulettePlayContentProps> = ({
         <RoulettePlayContentCircle isPlay={!skip} onClick={onClickSkip}>
           {data && !error ? (
             <RoulettePlayContentRandom>
-              <Image src={data.header_image} width={460} height={215} />
+              <Image
+                unoptimized
+                src={data.header_image}
+                width={460}
+                height={215}
+              />
             </RoulettePlayContentRandom>
           ) : (
             <RoulettePlayContentRandom>
               {waiting ? (
-                <Image src={loading} width={30} height={30} />
+                <Image unoptimized src={loading} width={30} height={30} />
               ) : (
-                <Image src={random} />
+                <Image unoptimized src={random} />
               )}
             </RoulettePlayContentRandom>
           )}
           <RoulettePlayContentRandom>
-            <Image src={random} />
+            <Image unoptimized src={random} />
           </RoulettePlayContentRandom>
           <RoulettePlayContentRandom>
-            <Image src={random} />
+            <Image unoptimized src={random} />
           </RoulettePlayContentRandom>
           <RoulettePlayContentRandom>
-            <Image src={random} />
+            <Image unoptimized src={random} />
           </RoulettePlayContentRandom>
         </RoulettePlayContentCircle>
       </RoulettePlayContentGroup>

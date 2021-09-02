@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       <Link href={"/"}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
-          <Image src={logo} height={27} />
+          <Image unoptimized src={logo} height={27} />
         </a>
       </Link>
     </HeaderWrapper>

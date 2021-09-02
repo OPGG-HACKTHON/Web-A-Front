@@ -39,10 +39,10 @@ const RoulettePlay: React.FC = () => {
 
       <RoulettePlayButtonContainer>
         <RoulettePlayButton onClick={onClickReset}>
-          <Image src={reset} />
+          <Image unoptimized src={reset} />
         </RoulettePlayButton>
         <RoulettePlayButton onClick={onClickStart}>
-          <Image src={played ? replay : spin} />
+          <Image unoptimized src={played ? replay : spin} />
         </RoulettePlayButton>
       </RoulettePlayButtonContainer>
     </RoulettePlayWrapper>

@@ -42,7 +42,7 @@ const PrewviewCarouselModal: React.FC<IPreviewCarouselModal> = ({
             {selectedIndex} / {thumbnailListState.length - 2}
           </IndexWrapper>
           <CloseIconWrapper onClick={handleModalClose}>
-            <Image src={close} height={15} width={15} />
+            <Image unoptimized src={close} height={15} width={15} />
           </CloseIconWrapper>
         </PreviewImgHeader>
         <PickedImg

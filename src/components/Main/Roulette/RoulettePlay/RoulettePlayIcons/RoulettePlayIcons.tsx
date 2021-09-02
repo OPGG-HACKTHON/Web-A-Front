@@ -81,15 +81,19 @@ const RoulettePlayIcons: React.FC<IRoulettePlayIconsProps> = ({
           {getIconOrder(i) <= count ? (
             <RoulettePlayIconsImg isLeft={position === "left"}>
               <RoulettePlayIconsContainer>
-                <Image src={position === "left" ? keywordL : keywordR} />
+                <Image
+                  unoptimized
+                  src={position === "left" ? keywordL : keywordR}
+                />
                 <RoulettePlayIconsImgWrapper>
-                  <Image src={getIconSource(i)} />
+                  <Image unoptimized src={getIconSource(i)} />
                 </RoulettePlayIconsImgWrapper>
               </RoulettePlayIconsContainer>
             </RoulettePlayIconsImg>
           ) : (
             <RoulettePlayIconsImg isLeft={position === "left"}>
               <Image
+                unoptimized
                 src={position === "left" ? keywordEmptyL : keywordEmptyR}
               />
             </RoulettePlayIconsImg>
