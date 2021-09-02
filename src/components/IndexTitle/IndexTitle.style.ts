@@ -4,6 +4,7 @@ const Title = styled.div`
   display: flex;
   font-size: 2.8rem;
   line-height: 3.5rem;
+  color: ${({ theme }) => theme.palette.grayScale[100]};
 `;
 
 const IndexContainer = styled.div`
