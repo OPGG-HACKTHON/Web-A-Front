@@ -23,7 +23,7 @@ export interface AboutPageProps {
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
   return (
     <>
-      <GameInfo {...{ item }} />;
+      <GameInfo {...{ item }} />
       <VideoCarousel videos={item.movies} />
       <PreviewCarousel thumbnailList={item.screenshots} />
     </>
