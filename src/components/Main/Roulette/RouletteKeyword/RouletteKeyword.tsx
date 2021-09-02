@@ -1,4 +1,4 @@
-import useKeywords from "hooks/main/roulette/useKeywords";
+import { useKeywords } from "hooks/main";
 
 import { KeywordItem, KeywordWrapper } from "./RouletteKeyword.style";
 

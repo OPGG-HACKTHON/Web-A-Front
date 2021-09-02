@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "style/GlobalStyle";
 import theme from "style/theme";
 import Header from "components/Header";
+import PageWrapper from "components/PageWrapper";
 
 class MyApp extends App {
   render() {
@@ -14,7 +15,9 @@ class MyApp extends App {
       <ThemeProvider {...{ theme }}>
         <RecoilRoot>
           <Header />
-          <Component {...pageProps} />
+          <PageWrapper>
+            <Component {...pageProps} />
+          </PageWrapper>
           <GlobalStyle />
         </RecoilRoot>
       </ThemeProvider>

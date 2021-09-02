@@ -13,6 +13,7 @@ import {
 } from "./Roulette.style";
 import RouletteKeyword from "./RouletteKeyword";
 import RoluletteBubble from "./RoluletteBubble";
+import RoulettePlay from "./RoulettePlay";
 
 const Roulette: React.FC = () => {
   const [isTooltipShow, setIsTooltipShow] = useState<boolean>(false);
@@ -45,6 +46,7 @@ const Roulette: React.FC = () => {
           />
         </RouletteSubTitleWrapper>
         <RouletteKeyword />
+        <RoulettePlay />
       </RouletteContent>
     </RouletteWrapper>
   );

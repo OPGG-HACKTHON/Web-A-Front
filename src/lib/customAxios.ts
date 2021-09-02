@@ -1,9 +1,7 @@
 import axios from "axios";
 
-import server from "config/server";
-
 const client = axios.create({
-  baseURL: server,
+  baseURL: process.env.SERVER_URL,
 });
 
 client.defaults.headers = {
