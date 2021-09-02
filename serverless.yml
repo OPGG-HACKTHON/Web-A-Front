@@ -1,6 +1,6 @@
 stage: ${env.STAGE}
 jampick-web:
-  component: "@sls-next/serverless-component@3.2.0"
+  component: "@sls-next/serverless-component@3.3.0"
   inputs:
     useServerlesstrace: false
     policy: arn:aws:iam::159698424543:policy/jampickweb-policy
