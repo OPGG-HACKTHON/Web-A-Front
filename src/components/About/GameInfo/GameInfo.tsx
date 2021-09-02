@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { AboutPageProps } from "pages/about/[id]";
 
 import GameInfoHashtag from "./GameInfoHashtag";
