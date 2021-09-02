@@ -1,11 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import logo from "assets/images/logo.svg";
+
 import { HeaderWrapper } from "./Header.style";
 
 const Header: React.FC = () => {
   return (
     <HeaderWrapper>
-      <Image src={logo} height={27} />
+      <Link href={"/"}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>
+          <Image src={logo} height={27} />
+        </a>
+      </Link>
     </HeaderWrapper>
   );
 };

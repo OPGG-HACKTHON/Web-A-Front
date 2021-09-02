@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // styled
 import {
   WholeContainer,
+  CarouselWrapper,
   CarouselContainer,
   CarouselImageContainer,
   PickImg,
@@ -70,46 +71,50 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   };
 
   return (
-    <WholeContainer>
-      <IndexTitle
-        withoutIndex
-        title="프리뷰"
-        total={thumbnailList.length}
-        clickHandler={handleSelectedImageChange}
-        onScreenCount={0}
-        selectedIndex={0}
-      />
-      <CarouselContainer>
-        <CarouselImageContainer width={890}>
-          {thumbnailListState.map((thumbnail: string, idx: number) => (
-            <PickImg
-              onClick={() => setVisible(true)}
-              selected={idx === selectedIndex}
-              key={`${thumbnail}-${idx}`}
-              ref={(el: HTMLDivElement) => (carouselItemsRef.current[idx] = el)}
-              style={{ backgroundImage: `url(${thumbnail})` }}
-            />
-          ))}
-          <div style={{ position: "absolute", left: "22rem", top: "12rem" }}>
-            <ArrowBtn left white onClick={handleLeftClick} />
-          </div>
-          <div style={{ position: "absolute", right: "22rem", top: "12rem" }}>
-            <ArrowBtn white onClick={handleRightClick} />
-          </div>
-        </CarouselImageContainer>
-      </CarouselContainer>
-      <Modal {...{ visible }} onClose={() => setVisible(false)}>
-        <PrewviewCarouselModal
-          {...{
-            selectedIndex,
-            thumbnailListState,
-            handleLeftClick,
-            handleRightClick,
-            handleModalClose: () => setVisible(false),
-          }}
+    <CarouselWrapper>
+      <WholeContainer>
+        <IndexTitle
+          withoutIndex
+          title="프리뷰"
+          total={thumbnailList.length}
+          clickHandler={handleSelectedImageChange}
+          onScreenCount={0}
+          selectedIndex={0}
         />
-      </Modal>
-    </WholeContainer>
+        <CarouselContainer>
+          <CarouselImageContainer width={890}>
+            {thumbnailListState.map((thumbnail: string, idx: number) => (
+              <PickImg
+                onClick={() => setVisible(true)}
+                selected={idx === selectedIndex}
+                key={`${thumbnail}-${idx}`}
+                ref={(el: HTMLDivElement) =>
+                  (carouselItemsRef.current[idx] = el)
+                }
+                style={{ backgroundImage: `url(${thumbnail})` }}
+              />
+            ))}
+            <div style={{ position: "absolute", left: "22rem", top: "12rem" }}>
+              <ArrowBtn left white onClick={handleLeftClick} />
+            </div>
+            <div style={{ position: "absolute", right: "22rem", top: "12rem" }}>
+              <ArrowBtn white onClick={handleRightClick} />
+            </div>
+          </CarouselImageContainer>
+        </CarouselContainer>
+        <Modal {...{ visible }} onClose={() => setVisible(false)}>
+          <PrewviewCarouselModal
+            {...{
+              selectedIndex,
+              thumbnailListState,
+              handleLeftClick,
+              handleRightClick,
+              handleModalClose: () => setVisible(false),
+            }}
+          />
+        </Modal>
+      </WholeContainer>
+    </CarouselWrapper>
   );
 };
 

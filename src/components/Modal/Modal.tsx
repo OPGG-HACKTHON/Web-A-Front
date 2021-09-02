@@ -10,9 +10,11 @@ const Modal: React.FC<IModalProps> = ({ onClose, visible, children }) => {
   };
 
   useEffect(() => {
-    if (visible) document.body.style.cssText = `overflow: hidden`;
+    const isDocumentExist = typeof window !== "undefined";
+    if (visible && isDocumentExist)
+      document.body.style.cssText = `overflow: hidden`;
     return () => {
-      document.body.style.cssText = `overflow: ""`;
+      if (isDocumentExist) document.body.style.cssText = `overflow: ""`;
     };
   }, [visible]);
 

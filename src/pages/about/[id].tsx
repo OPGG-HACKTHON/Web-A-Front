@@ -1,31 +1,43 @@
+import React from "react";
 import { NextPage } from "next";
-import Axios from "axios";
 
+import client from "lib/customAxios";
+
+import { PreviewCarousel } from "components/PreviewCarousel";
+import { VideoCarousel } from "components/VideoCarousel";
 import GameInfo from "components/About/GameInfo";
 
 export interface AboutPageProps {
   item: {
     id: number;
-    name: any;
+    name: string | null;
     short_description: string;
     header_image: string;
     release_date: string;
-    genres: [];
-    screenshots: [];
-    movies: [];
+    genres: [string];
+    screenshots: [string];
+    movies: [string];
   };
 }
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
-  return <GameInfo {...{ item }} />;
+  return (
+    <>
+      <GameInfo {...{ item }} />
+      <VideoCarousel videos={item.movies} />
+      <PreviewCarousel thumbnailList={item.screenshots} />
+    </>
+  );
 };
 
 AboutPage.getInitialProps = async (ctx) => {
   const id = ctx.query.id;
 
-  const apiUrl = `http://3.13.108.233:8080/api/detail/${id}`;
-  const res = await Axios.get(apiUrl);
-  const data = res.data.data;
+  const apiUrl = `/api/detail/${id}`;
+  const res = await client.get(apiUrl);
+  const {
+    data: { data },
+  } = res;
 
   return { item: data };
 };
