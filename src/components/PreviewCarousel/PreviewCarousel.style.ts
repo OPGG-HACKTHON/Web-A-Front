@@ -4,6 +4,13 @@ import {
   PickImgProps,
 } from "./PreviewCarousel.type";
 
+const CarouselWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: ${({ theme }) => theme.palette.backgroundColors.dark};
+`;
+
 const WholeContainer = styled.div`
   width: 102.4rem;
   display: flex;
@@ -34,4 +41,10 @@ const PickImg = styled.div<PickImgProps>`
   filter: ${({ selected }) => (selected ? "unset;" : `brightness(20%);`)};
 `;
 
-export { WholeContainer, CarouselContainer, CarouselImageContainer, PickImg };
+export {
+  WholeContainer,
+  CarouselContainer,
+  CarouselImageContainer,
+  PickImg,
+  CarouselWrapper,
+};

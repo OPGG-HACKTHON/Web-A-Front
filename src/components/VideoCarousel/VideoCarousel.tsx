@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 
 import {
   WholeContainer,
+  CarouselWrapper,
   VideoChip,
   VideoWrapper,
   CarouselContainer,
@@ -52,40 +53,42 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   };
 
   return (
-    <WholeContainer>
-      <IndexTitle
-        withoutIndex
-        title="영상"
-        total={videos.length}
-        clickHandler={handleSelectedImageChange}
-        onScreenCount={0}
-        selectedIndex={0}
-      />
-      <CarouselContainer>
-        <SelectedVideo controls>
-          <source src={videos[selectedIndex]} type="video/mp4" />
-        </SelectedVideo>
-        <VideoListWrapper>
-          <ButtonWrapper upper>
-            <ArrowBtn onClick={handleUpClick} left />
-          </ButtonWrapper>
-          <VideoWrapper>
-            {videos.map((videoSrc: string, idx) => (
-              <VideoItemWrapper
-                ref={(el: HTMLDivElement) =>
-                  (carouselItemsRef.current[idx] = el)
-                }
-                selected={selectedIndex === idx}>
-                <VideoChip src={videoSrc} />
-              </VideoItemWrapper>
-            ))}
-          </VideoWrapper>
-          <ButtonWrapper>
-            <ArrowBtn onClick={handleDownClick} />
-          </ButtonWrapper>
-        </VideoListWrapper>
-      </CarouselContainer>
-    </WholeContainer>
+    <CarouselWrapper>
+      <WholeContainer>
+        <IndexTitle
+          withoutIndex
+          title="영상"
+          total={videos.length}
+          clickHandler={handleSelectedImageChange}
+          onScreenCount={0}
+          selectedIndex={0}
+        />
+        <CarouselContainer>
+          <SelectedVideo controls>
+            <source src={videos[selectedIndex]} type="video/mp4" />
+          </SelectedVideo>
+          <VideoListWrapper>
+            <ButtonWrapper upper>
+              <ArrowBtn onClick={handleUpClick} left />
+            </ButtonWrapper>
+            <VideoWrapper>
+              {videos.map((videoSrc: string, idx) => (
+                <VideoItemWrapper
+                  ref={(el: HTMLDivElement) =>
+                    (carouselItemsRef.current[idx] = el)
+                  }
+                  selected={selectedIndex === idx}>
+                  <VideoChip src={videoSrc} />
+                </VideoItemWrapper>
+              ))}
+            </VideoWrapper>
+            <ButtonWrapper>
+              <ArrowBtn onClick={handleDownClick} />
+            </ButtonWrapper>
+          </VideoListWrapper>
+        </CarouselContainer>
+      </WholeContainer>
+    </CarouselWrapper>
   );
 };
 

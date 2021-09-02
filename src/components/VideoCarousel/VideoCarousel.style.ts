@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const CarouselWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: ${({ theme }) => theme.palette.backgroundColors.dark};
+`;
+
 const WholeContainer = styled.div`
   width: 102.4rem;
   display: flex;
@@ -71,5 +78,6 @@ export {
   SelectedVideo,
   VideoWrapper,
   ButtonWrapper,
+  CarouselWrapper,
   VideoItemWrapper,
 };
