@@ -6,7 +6,7 @@ export const RouletteWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4.2rem;
+  padding-top: 20rem;
   height: 112.6rem;
   background-image: url("/roulette/background.png");
   background-size: cover;
@@ -17,7 +17,7 @@ export const RouletteContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 13.1rem 6.1rem;
+  padding: 0rem 6.1rem;
 `;
 
 export const RouletteTitle = styled.h1`
@@ -31,7 +31,7 @@ export const RouletteSubTitleWrapper = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.9rem;
+  margin-top: 2rem;
   position: relative;
 `;
 

@@ -17,7 +17,7 @@ import {
   RoulettePlayIconsContainer,
   RoulettePlayIconsImg,
   RoulettePlayIconsImgWrapper,
-} from "./RoulettePlayIcons.style.ts";
+} from "./RoulettePlayIcons.style";
 
 interface IRoulettePlayIconsProps {
   count: number;
