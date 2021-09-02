@@ -17,6 +17,6 @@ export const keywordsState = atom<Array<IKeyword>>({
 });
 
 export const rouletteState = atom<IRouletteState>({
-  key: "roletteState",
+  key: "rouletteState",
   default: rouletteDefaultState,
 });
