@@ -6,8 +6,9 @@ export const RouletteWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20rem;
+  width: 100%;
   height: 112.6rem;
+  padding-top: 20rem;
   background-image: url("/roulette/background.png");
   background-size: cover;
   background-position: center;
