@@ -6,6 +6,7 @@ const client = axios.create({
 
 client.defaults.headers = {
   "Cache-Control": "no-cache",
+  "Accept-Language": "ko-KR",
   Accept: "application/json",
   Pragma: "no-cache",
   Expires: "0",
