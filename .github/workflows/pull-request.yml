@@ -1,0 +1,29 @@
+name: pull-request
+on: pull_request
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install Packages
+        run: yarn
+      - name: Eslint Check
+        run: yarn lint src/**/*.tsx src/**/*.ts --max-warnings=0
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install Packages
+        run: yarn
+      - name: Testing Code
+        run: yarn test
