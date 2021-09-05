@@ -48,7 +48,7 @@ export const RoulettePlayContentBox = styled.div`
   justify-content: center;
   left: 0;
   top: 50%;
-  transform: translate(0, calc(-50% + 0.5px));
+  transform: translate(0, -50%);
   background-color: #000000ac;
   z-index: 3;
   padding: 2rem;
@@ -69,7 +69,7 @@ export const RoulettePlayContentRandom = styled.div`
   &:first-of-type {
     left: 0;
     top: 50%;
-    transform: translate(0, calc(-50% + -0.5px));
+    transform: translate(0, -50%);
     z-index: 2;
     &:hover {
       ${RoulettePlayContentBox} {
