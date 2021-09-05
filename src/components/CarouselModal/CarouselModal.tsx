@@ -23,7 +23,7 @@ export interface ICarouselModal {
   handlePrevClick: () => void;
   handleNextClick: () => void;
   handleModalClose: () => void;
-  video: boolean;
+  video?: boolean;
 }
 
 const CarouselModal: React.FC<ICarouselModal> = ({
@@ -36,7 +36,7 @@ const CarouselModal: React.FC<ICarouselModal> = ({
 }) => {
   return (
     <>
-      <ButtonWrapper style={{ left: "22rem" }}>
+      <ButtonWrapper style={{ left: video ? "22rem" : "36rem" }}>
         <ArrowBtn left white onClick={handlePrevClick} />
       </ButtonWrapper>
       <ModalWrapper>
@@ -67,7 +67,7 @@ const CarouselModal: React.FC<ICarouselModal> = ({
           />
         )}
       </ModalWrapper>
-      <ButtonWrapper style={{ right: "22rem" }}>
+      <ButtonWrapper style={{ right: video ? "22rem" : "36rem" }}>
         <ArrowBtn white onClick={handleNextClick} />
       </ButtonWrapper>
     </>
