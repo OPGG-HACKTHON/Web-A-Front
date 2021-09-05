@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import {
+  PickImg,
   WholeContainer,
   CarouselWrapper,
   CarouselContainer,
   CarouselImageContainer,
-  PickImg,
 } from "./PreviewCarousel.style";
 
-import { IndexTitle } from "components/IndexTitle";
-import { ArrowBtn } from "components/ArrowBtn";
 import { Modal } from "components/Modal";
-import { PreviewCarouselModal } from "./PreviewCarouselModal";
+import { ArrowBtn } from "components/ArrowBtn";
+import { IndexTitle } from "components/IndexTitle";
+import { CarouselModal } from "components/CarouselModal";
 
 const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   thumbnailList,
@@ -73,14 +73,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle
-          withoutIndex
-          title="프리뷰"
-          total={thumbnailList.length}
-          clickHandler={handleSelectedImageChange}
-          onScreenCount={0}
-          selectedIndex={0}
-        />
+        <IndexTitle withoutIndex title="프리뷰" />
         <CarouselContainer>
           <CarouselImageContainer width={890}>
             {thumbnailListState.map((thumbnail: string, idx: number) => (
@@ -103,12 +96,12 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
           </CarouselImageContainer>
         </CarouselContainer>
         <Modal {...{ visible }} onClose={() => setVisible(false)}>
-          <PreviewCarouselModal
+          <CarouselModal
             {...{
               selectedIndex,
-              thumbnailListState,
-              handleLeftClick,
-              handleRightClick,
+              itemList: thumbnailListState,
+              handlePrevClick: handleLeftClick,
+              handleNextClick: handleRightClick,
               handleModalClose: () => setVisible(false),
             }}
           />
