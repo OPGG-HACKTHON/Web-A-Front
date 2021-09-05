@@ -27,7 +27,7 @@ const useKeywords = () => {
         keywords.map((v) => (v.name === keyword.name ? newValue : v))
       );
     },
-    [keywords, selectedKeywords]
+    [keywords, selectedKeywords, setKeywords]
   );
 
   return { keywords, handleOnClick };
