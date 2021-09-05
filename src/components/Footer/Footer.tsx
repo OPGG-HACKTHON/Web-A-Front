@@ -1,16 +1,34 @@
 import Link from "next/link";
 
-import { FooterContainer, FooterText, FooterLinks } from "./Footer.style";
+import {
+  FooterWrapper,
+  FooterContainer,
+  FooterText,
+  FooterLinks,
+  LinkStyle,
+} from "./Footer.style";
 
 const Footer = () => {
   return (
-    <FooterContainer>
-      <FooterText>Copyright 2021. wearecastle. All rights reserved.</FooterText>
+    <FooterWrapper>
+      <FooterContainer>
+        <FooterText>
+          Copyright 2021. wearecastle. All rights reserved.
+        </FooterText>
 
-      <FooterLinks>
-        <Link href="/#">메타데이터 소스</Link>
-      </FooterLinks>
-    </FooterContainer>
+        <FooterLinks>
+          <Link href="/#">
+            <LinkStyle>메타데이터 소스</LinkStyle>
+          </Link>
+          <Link href="/#">
+            <LinkStyle>이용 약관</LinkStyle>
+          </Link>
+          <Link href="/#">
+            <LinkStyle>개인정보 처리방침</LinkStyle>
+          </Link>
+        </FooterLinks>
+      </FooterContainer>
+    </FooterWrapper>
   );
 };
 
