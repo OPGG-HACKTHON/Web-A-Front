@@ -13,9 +13,12 @@ import {
 } from "./VideoCarousel.style";
 import { ArrowBtn } from "components/ArrowBtn";
 
+import { CarouselModal } from "components/CarouselModal";
 import { IndexTitle } from "components/IndexTitle";
+import { Modal } from "components/Modal";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
+  const [visible, setVisible] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
@@ -55,16 +58,9 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle
-          withoutIndex
-          title="영상"
-          total={movies.length}
-          clickHandler={handleSelectedImageChange}
-          onScreenCount={0}
-          selectedIndex={0}
-        />
+        <IndexTitle withoutIndex title="영상" />
         <CarouselContainer>
-          <SelectedVideo controls>
+          <SelectedVideo onClick={() => setVisible(true)}>
             <source src={movies[selectedIndex]} type="video/mp4" />
           </SelectedVideo>
           <VideoListWrapper>
@@ -87,6 +83,18 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
             </ButtonWrapper>
           </VideoListWrapper>
         </CarouselContainer>
+        <Modal {...{ visible }} onClose={() => setVisible(false)}>
+          <CarouselModal
+            video
+            {...{
+              selectedIndex,
+              itemList: movies,
+              handlePrevClick: handleUpClick,
+              handleNextClick: handleDownClick,
+              handleModalClose: () => setVisible(false),
+            }}
+          />
+        </Modal>
       </WholeContainer>
     </CarouselWrapper>
   );
