@@ -6,7 +6,7 @@ on:
 env:
   prod_CLOUDFRONT: ${{ secrets.PROD_CLOUDFRONT }}
   dev_CLOUDFRONT: ${{ secrets.DEV_CLOUDFRONT }}
-  SERVER_URL: ${{ secrets.SERVER_URL }}
+  NEXT_PUBLIC_SERVER_URL: ${{ secrets.SERVER_URL }}
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
