@@ -15,12 +15,12 @@ import { ArrowBtn } from "components/ArrowBtn";
 
 import { IndexTitle } from "components/IndexTitle";
 
-const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
+const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
   const handleSelectedImageChange = (newIdx: number) => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       setSelectedIndex(newIdx);
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
@@ -33,9 +33,9 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   };
 
   const handleDownClick = () => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       let newIdx = selectedIndex + 1;
-      if (newIdx >= videos.length) {
+      if (newIdx >= movies.length) {
         newIdx = 0;
       }
       handleSelectedImageChange(newIdx);
@@ -43,10 +43,10 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   };
 
   const handleUpClick = () => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       let newIdx = selectedIndex - 1;
       if (newIdx < 0) {
-        newIdx = videos.length;
+        newIdx = movies.length;
       }
       handleSelectedImageChange(newIdx);
     }
@@ -58,27 +58,27 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
         <IndexTitle
           withoutIndex
           title="영상"
-          total={videos.length}
+          total={movies.length}
           clickHandler={handleSelectedImageChange}
           onScreenCount={0}
           selectedIndex={0}
         />
         <CarouselContainer>
           <SelectedVideo controls>
-            <source src={videos[selectedIndex]} type="video/mp4" />
+            <source src={movies[selectedIndex]} type="video/mp4" />
           </SelectedVideo>
           <VideoListWrapper>
             <ButtonWrapper upper>
               <ArrowBtn onClick={handleUpClick} left />
             </ButtonWrapper>
             <VideoWrapper>
-              {videos.map((videoSrc: string, idx) => (
+              {movies.map((moviesrc: string, idx) => (
                 <VideoItemWrapper
                   ref={(el: HTMLDivElement) =>
                     (carouselItemsRef.current[idx] = el)
                   }
                   selected={selectedIndex === idx}>
-                  <VideoChip src={videoSrc} />
+                  <VideoChip src={moviesrc} />
                 </VideoItemWrapper>
               ))}
             </VideoWrapper>

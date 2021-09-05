@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-// styled
+
 import {
   WholeContainer,
   CarouselWrapper,
@@ -7,11 +7,11 @@ import {
   CarouselImageContainer,
   PickImg,
 } from "./PreviewCarousel.style";
-// custom-components
+
 import { IndexTitle } from "components/IndexTitle";
 import { ArrowBtn } from "components/ArrowBtn";
-import Modal from "components/Modal/Modal";
-import PrewviewCarouselModal from "./PreviewCarouselModal/PreviewCarouselModal";
+import { Modal } from "components/Modal";
+import { PreviewCarouselModal } from "./PreviewCarouselModal";
 
 const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   thumbnailList,
@@ -103,7 +103,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
           </CarouselImageContainer>
         </CarouselContainer>
         <Modal {...{ visible }} onClose={() => setVisible(false)}>
-          <PrewviewCarouselModal
+          <PreviewCarouselModal
             {...{
               selectedIndex,
               thumbnailListState,
