@@ -10,7 +10,7 @@
     "clear": "rm -rf .serverless && rm -rf .serverless_nextjs",
     "deploy:dev": "yarn run clear && STAGE=dev serverless --verbose",
     "deploy:prod": "yarn run clear && STAGE=prod serverless --verbose",
-    "lint": "eslint"
+    "lint": "eslint --max-warnings 0 \"**/*.{ts,tsx}\""
   },
   "dependencies": {
     "axios": "^0.21.1",
