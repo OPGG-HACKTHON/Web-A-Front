@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { IRouletteState } from "types/IRouletteResult";
 
-import loading from "assets/images/roulette/loading.gif";
+import loadingGif from "assets/images/roulette/loading.gif";
 import random from "assets/images/roulette/random.svg";
 
 import {
@@ -10,28 +11,32 @@ import {
   RoulettePlayContentRandom,
   RoulettePlayContentCircle,
   RoulettePlayContentGroup,
+  RoulettePlayContentBox,
+  RoulettePlayContentTitle,
+  RoulettePlayContentGenres,
+  RoulettePlayContentBtn,
 } from "./RoulettePlayContent.style";
 
 interface IRoulettePlayContentProps {
   item: IRouletteState;
   skip: boolean;
   waiting: boolean;
-  onClickSkip: () => void;
+  loading: boolean;
 }
 
 const RoulettePlayContent: React.FC<IRoulettePlayContentProps> = ({
   item,
   skip,
   waiting,
-  onClickSkip,
+  loading,
 }) => {
   const { error, data } = item;
 
   return (
     <RoulettePlayContentWrapper>
       <RoulettePlayContentGroup>
-        <RoulettePlayContentCircle isPlay={!skip} onClick={onClickSkip}>
-          {data && !error ? (
+        <RoulettePlayContentCircle isPlay={!skip}>
+          {data && !error && !loading ? (
             <RoulettePlayContentRandom>
               <Image
                 unoptimized
@@ -39,11 +44,24 @@ const RoulettePlayContent: React.FC<IRoulettePlayContentProps> = ({
                 width={460}
                 height={215}
               />
+              <RoulettePlayContentBox>
+                <RoulettePlayContentTitle>
+                  {data.name || "이름없음."}
+                </RoulettePlayContentTitle>
+                <RoulettePlayContentGenres>
+                  {data.genres.map((v, i) => (
+                    <span key={i}>{v}</span>
+                  ))}
+                </RoulettePlayContentGenres>
+                <Link href={`/about/${data.id}`} scroll={true}>
+                  <RoulettePlayContentBtn>게임 상세보기</RoulettePlayContentBtn>
+                </Link>
+              </RoulettePlayContentBox>
             </RoulettePlayContentRandom>
           ) : (
             <RoulettePlayContentRandom>
               {waiting ? (
-                <Image unoptimized src={loading} width={30} height={30} />
+                <Image unoptimized src={loadingGif} width={30} height={30} />
               ) : (
                 <Image unoptimized src={random} />
               )}

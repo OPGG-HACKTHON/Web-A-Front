@@ -22,18 +22,16 @@ const RoulettePlay: React.FC = () => {
     played,
     skip,
     waiting,
+    loading,
     onClickReset,
     onClickStart,
-    onClickSkip,
   } = useRoulette();
 
   return (
     <RoulettePlayWrapper>
       <RoulettePlayContainer>
         <RoulettePlayIcons count={selectedCount} position="left" />
-        <RoulettePlayContent
-          {...{ skip, waiting, onClickSkip, item: roulette }}
-        />
+        <RoulettePlayContent {...{ skip, waiting, loading, item: roulette }} />
         <RoulettePlayIcons count={selectedCount} position="right" />
       </RoulettePlayContainer>
 

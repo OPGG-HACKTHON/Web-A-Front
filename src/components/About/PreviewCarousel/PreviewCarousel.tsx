@@ -22,6 +22,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   );
   const [selectedIndex, setSelectedIndex] = useState(1);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
+  const parentRef = useRef<HTMLDivElement | null>();
 
   useEffect(() => {
     setThumbnailListState([
@@ -32,9 +33,9 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   }, [thumbnailList]);
 
   useEffect(() => {
-    if (carouselItemsRef?.current[1]) {
-      carouselItemsRef?.current[1]?.scrollIntoView({
-        inline: "center",
+    if (parentRef?.current && carouselItemsRef?.current[1]) {
+      parentRef?.current?.scrollTo({
+        left: carouselItemsRef?.current[1].clientWidth / 2,
       });
     }
   }, [thumbnailListState]);
@@ -45,6 +46,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
           inline: "center",
+          block: "nearest",
         });
       }
     }
@@ -75,7 +77,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
       <WholeContainer>
         <IndexTitle withoutIndex title="프리뷰" />
         <CarouselContainer>
-          <CarouselImageContainer width={890}>
+          <CarouselImageContainer ref={parentRef} width={890}>
             {thumbnailListState.map((thumbnail: string, idx: number) => (
               <PickImg
                 onClick={() => setOpen(true)}
