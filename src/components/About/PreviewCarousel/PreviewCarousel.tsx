@@ -22,7 +22,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   );
   const [selectedIndex, setSelectedIndex] = useState(1);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
-  const parentRef = useRef<HTMLDivElement | null>();
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setThumbnailListState([
