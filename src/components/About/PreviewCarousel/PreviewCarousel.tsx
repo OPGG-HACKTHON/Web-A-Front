@@ -1,28 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-// styled
+
 import {
+  PickImg,
   WholeContainer,
   CarouselWrapper,
   CarouselContainer,
   CarouselImageContainer,
-  PickImg,
 } from "./PreviewCarousel.style";
-// custom-components
-import { IndexTitle } from "components/IndexTitle";
+
+import { Modal } from "components/Modal";
 import { ArrowBtn } from "components/ArrowBtn";
-import Modal from "components/Modal/Modal";
-import PrewviewCarouselModal from "./PreviewCarouselModal/PreviewCarouselModal";
+import { IndexTitle } from "components/IndexTitle";
+import { CarouselModal } from "components/CarouselModal";
 
 const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   thumbnailList,
 }) => {
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const [thumbnailListState, setThumbnailListState] = useState<Array<string>>(
     []
   );
   const [selectedIndex, setSelectedIndex] = useState(1);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
-  const parentRef = useRef<HTMLDivElement | null>();
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setThumbnailListState([
@@ -75,19 +75,12 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle
-          withoutIndex
-          title="프리뷰"
-          total={thumbnailList.length}
-          clickHandler={handleSelectedImageChange}
-          onScreenCount={0}
-          selectedIndex={0}
-        />
+        <IndexTitle withoutIndex title="프리뷰" />
         <CarouselContainer>
           <CarouselImageContainer ref={parentRef} width={890}>
             {thumbnailListState.map((thumbnail: string, idx: number) => (
               <PickImg
-                onClick={() => setVisible(true)}
+                onClick={() => setOpen(true)}
                 selected={idx === selectedIndex}
                 key={`${thumbnail}-${idx}`}
                 ref={(el: HTMLDivElement) =>
@@ -104,14 +97,14 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
             </div>
           </CarouselImageContainer>
         </CarouselContainer>
-        <Modal {...{ visible }} onClose={() => setVisible(false)}>
-          <PrewviewCarouselModal
+        <Modal {...{ open }} onClose={() => setOpen(false)}>
+          <CarouselModal
             {...{
               selectedIndex,
-              thumbnailListState,
-              handleLeftClick,
-              handleRightClick,
-              handleModalClose: () => setVisible(false),
+              itemList: thumbnailListState,
+              handlePrevClick: handleLeftClick,
+              handleNextClick: handleRightClick,
+              handleModalClose: () => setOpen(false),
             }}
           />
         </Modal>
