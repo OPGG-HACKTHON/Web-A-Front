@@ -1,10 +1,10 @@
 import styled from "styled-components";
 interface IVisibleProps {
-  visible: boolean;
+  open: boolean;
 }
 const ModalWrapper = styled.div<IVisibleProps>`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? "flex" : "none")};
+  display: ${({ open }) => (open ? "flex" : "none")};
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ const ModalWrapper = styled.div<IVisibleProps>`
 
 const ModalOverlay = styled.div<IVisibleProps>`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? "block" : "none")};
+  display: ${({ open }) => (open ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;

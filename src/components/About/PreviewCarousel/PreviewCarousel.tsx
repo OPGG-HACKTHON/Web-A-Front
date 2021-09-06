@@ -16,7 +16,7 @@ import { CarouselModal } from "components/CarouselModal";
 const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   thumbnailList,
 }) => {
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const [thumbnailListState, setThumbnailListState] = useState<Array<string>>(
     []
   );
@@ -78,7 +78,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
           <CarouselImageContainer width={890}>
             {thumbnailListState.map((thumbnail: string, idx: number) => (
               <PickImg
-                onClick={() => setVisible(true)}
+                onClick={() => setOpen(true)}
                 selected={idx === selectedIndex}
                 key={`${thumbnail}-${idx}`}
                 ref={(el: HTMLDivElement) =>
@@ -95,14 +95,14 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
             </div>
           </CarouselImageContainer>
         </CarouselContainer>
-        <Modal {...{ visible }} onClose={() => setVisible(false)}>
+        <Modal {...{ open }} onClose={() => setOpen(false)}>
           <CarouselModal
             {...{
               selectedIndex,
               itemList: thumbnailListState,
               handlePrevClick: handleLeftClick,
               handleNextClick: handleRightClick,
-              handleModalClose: () => setVisible(false),
+              handleModalClose: () => setOpen(false),
             }}
           />
         </Modal>
