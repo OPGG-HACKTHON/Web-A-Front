@@ -17,6 +17,7 @@ jobs:
         with:
           eslint: true
           prettier: true
+          eslint_args: "--max-warnings 0"
   test:
     runs-on: ubuntu-latest
     steps:
