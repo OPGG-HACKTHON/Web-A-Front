@@ -18,7 +18,7 @@ jobs:
           eslint: true
           prettier: true
           eslint_args: "--max-warnings 0"
-          eslint_dir: "'**/*.{ts,tsx}'"
+          eslint_dir: '"src/"'
   test:
     runs-on: ubuntu-latest
     steps:
