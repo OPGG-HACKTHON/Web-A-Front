@@ -18,7 +18,7 @@ import { IndexTitle } from "components/IndexTitle";
 import { Modal } from "components/Modal";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
@@ -60,7 +60,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
       <WholeContainer>
         <IndexTitle withoutIndex title="영상" />
         <CarouselContainer>
-          <SelectedVideo onClick={() => setVisible(true)}>
+          <SelectedVideo onClick={() => setOpen(true)}>
             <source src={movies[selectedIndex]} type="video/mp4" />
           </SelectedVideo>
           <VideoListWrapper>
@@ -83,7 +83,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
             </ButtonWrapper>
           </VideoListWrapper>
         </CarouselContainer>
-        <Modal {...{ visible }} onClose={() => setVisible(false)}>
+        <Modal {...{ open }} onClose={() => setOpen(false)}>
           <CarouselModal
             video
             {...{
@@ -91,7 +91,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
               itemList: movies,
               handlePrevClick: handleUpClick,
               handleNextClick: handleDownClick,
-              handleModalClose: () => setVisible(false),
+              handleModalClose: () => setOpen(false),
             }}
           />
         </Modal>
