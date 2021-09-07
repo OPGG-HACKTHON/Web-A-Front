@@ -13,3 +13,8 @@ client.defaults.headers = {
 };
 
 export default client;
+
+export const updateLocale = (locale: string | undefined) => {
+  const lang = locale === "en" ? "en-US" : "ko-KR";
+  client.defaults.headers["Accept-Language"] = lang;
+};

@@ -1,7 +1,7 @@
 import React from "react";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 
-import client from "lib/customAxios";
+import client, { updateLocale } from "lib/customAxios";
 
 import { PreviewCarousel } from "components/About/PreviewCarousel";
 import { VideoCarousel } from "components/About/VideoCarousel";
@@ -31,8 +31,12 @@ const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
   );
 };
 
-AboutPage.getInitialProps = async (ctx) => {
-  const id = ctx.query.id;
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+  locale,
+}) => {
+  updateLocale(locale);
+  const { id } = query;
 
   const apiUrl = `/api/detail/${id}`;
   const res = await client.get(apiUrl);
@@ -40,7 +44,7 @@ AboutPage.getInitialProps = async (ctx) => {
     data: { data },
   } = res;
 
-  return { item: data };
+  return { props: { item: data } };
 };
 
 export default AboutPage;
