@@ -1,4 +1,5 @@
 import React from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSideProps, NextPage } from "next";
 
 import client, { updateLocale } from "lib/customAxios";
@@ -44,7 +45,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     data: { data },
   } = res;
 
-  return { props: { item: data } };
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "ko", ["common", "main"])),
+      item: data,
+    },
+  };
 };
 
 export default AboutPage;
