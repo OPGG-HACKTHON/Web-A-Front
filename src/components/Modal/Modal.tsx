@@ -1,27 +1,30 @@
 import React, { useEffect } from "react";
-// Type
-import { IModalProps } from "./Modal.type";
-// Styled
+
 import { ModalOverlay, ModalWrapper } from "./Modal.style";
 
-const Modal: React.FC<IModalProps> = ({ onClose, visible, children }) => {
+interface IModalProps {
+  onClose: (e: React.MouseEvent) => void;
+  open: boolean;
+}
+
+const Modal: React.FC<IModalProps> = ({ onClose, open, children }) => {
   const onMaskClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose(e);
   };
 
   useEffect(() => {
     const isDocumentExist = typeof window !== "undefined";
-    if (visible && isDocumentExist)
+    if (open && isDocumentExist)
       document.body.style.cssText = `overflow: hidden`;
     return () => {
       if (isDocumentExist) document.body.style.cssText = `overflow: ""`;
     };
-  }, [visible]);
+  }, [open]);
 
   return (
     <>
-      <ModalOverlay {...{ visible }} />
-      <ModalWrapper onClick={onMaskClick} tabIndex={-1} visible={visible}>
+      <ModalOverlay {...{ open }} />
+      <ModalWrapper onClick={onMaskClick} tabIndex={-1} {...{ open }}>
         {children}
       </ModalWrapper>
     </>

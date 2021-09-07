@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 const PickedImg = styled.div`
-  height: 48rem;
-  width: 85.4rem;
+  height: 33.7rem;
+  width: 60rem;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+const PickedVideo = styled.video`
+  height: 48rem;
+  width: 85.4rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -14,14 +19,14 @@ const ButtonWrapper = styled.div`
   transform: translateY(-50%);
 `;
 
-const PreviewImgHeader = styled.div`
+const ModalHeader = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
   bottom: 2rem;
 `;
 
-const PreviewImgWrapper = styled.div`
+const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,10 +76,11 @@ const Dot = styled.div<IDotProps>`
 export {
   Dot,
   PickedImg,
+  PickedVideo,
   DotWrapper,
   IndexWrapper,
   ButtonWrapper,
   CloseIconWrapper,
-  PreviewImgHeader,
-  PreviewImgWrapper,
+  ModalWrapper,
+  ModalHeader,
 };
