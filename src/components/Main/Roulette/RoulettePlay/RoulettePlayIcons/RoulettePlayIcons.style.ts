@@ -25,3 +25,7 @@ export const RoulettePlayIconsImg = styled.div<{ isLeft: boolean }>`
     ${({ isLeft }) => (isLeft ? "margin: 0rem" : "margin-left: 2.6rem")};
   }
 `;
+
+export const RoulettePlayIconsPreload = styled.div`
+  display: none;
+`;
