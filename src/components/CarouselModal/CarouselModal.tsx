@@ -36,10 +36,10 @@ const CarouselModal: React.FC<ICarouselModal> = ({
 }) => {
   return (
     <>
-      <ButtonWrapper style={{ left: video ? "22rem" : "36rem" }}>
-        <ArrowBtn left white onClick={handlePrevClick} />
-      </ButtonWrapper>
       <ModalWrapper>
+        <ButtonWrapper style={{ left: "-6rem" }}>
+          <ArrowBtn left white onClick={handlePrevClick} />
+        </ButtonWrapper>
         <ModalHeader>
           <IndexWrapper>
             {selectedIndex} / {video ? itemList.length : itemList.length - 2}
@@ -66,10 +66,10 @@ const CarouselModal: React.FC<ICarouselModal> = ({
             }}
           />
         )}
+        <ButtonWrapper style={{ right: "-6rem" }}>
+          <ArrowBtn white onClick={handleNextClick} />
+        </ButtonWrapper>
       </ModalWrapper>
-      <ButtonWrapper style={{ right: video ? "22rem" : "36rem" }}>
-        <ArrowBtn white onClick={handleNextClick} />
-      </ButtonWrapper>
     </>
   );
 };
