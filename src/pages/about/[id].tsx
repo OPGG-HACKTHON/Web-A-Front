@@ -3,9 +3,9 @@ import { NextPage } from "next";
 
 import client from "lib/customAxios";
 
-import { PreviewCarousel } from "components/PreviewCarousel";
-import { VideoCarousel } from "components/VideoCarousel";
-import GameInfo from "components/About/GameInfo";
+import { PreviewCarousel } from "components/About/PreviewCarousel";
+import { VideoCarousel } from "components/About/VideoCarousel";
+import { GameInfo } from "components/About/GameInfo";
 
 export interface AboutPageProps {
   item: {
@@ -21,10 +21,11 @@ export interface AboutPageProps {
 }
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
+  const { movies } = item;
   return (
     <>
       <GameInfo {...{ item }} />
-      <VideoCarousel videos={item.movies} />
+      <VideoCarousel {...{ movies }} />
       <PreviewCarousel thumbnailList={item.screenshots} />
     </>
   );

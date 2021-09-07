@@ -33,6 +33,7 @@ const Roulette: React.FC = () => {
             키워드를 클릭해서 랜덤으로 추천 게임을 받아보세요!
           </RouletteSubTitle>
           <RouletteSubTitleTooltip
+            unoptimized
             src={tooltip}
             onMouseEnter={handleOnMouseEnter}
           />

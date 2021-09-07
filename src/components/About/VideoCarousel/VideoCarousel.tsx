@@ -13,14 +13,17 @@ import {
 } from "./VideoCarousel.style";
 import { ArrowBtn } from "components/ArrowBtn";
 
+import { CarouselModal } from "components/CarouselModal";
 import { IndexTitle } from "components/IndexTitle";
+import { Modal } from "components/Modal";
 
-const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
+const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
+  const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
   const handleSelectedImageChange = (newIdx: number) => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       setSelectedIndex(newIdx);
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
@@ -33,9 +36,9 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   };
 
   const handleDownClick = () => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       let newIdx = selectedIndex + 1;
-      if (newIdx >= videos.length) {
+      if (newIdx >= movies.length) {
         newIdx = 0;
       }
       handleSelectedImageChange(newIdx);
@@ -43,10 +46,10 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   };
 
   const handleUpClick = () => {
-    if (videos && videos.length > 0) {
+    if (movies && movies.length > 0) {
       let newIdx = selectedIndex - 1;
       if (newIdx < 0) {
-        newIdx = videos.length;
+        newIdx = movies.length;
       }
       handleSelectedImageChange(newIdx);
     }
@@ -55,30 +58,23 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle
-          withoutIndex
-          title="영상"
-          total={videos.length}
-          clickHandler={handleSelectedImageChange}
-          onScreenCount={0}
-          selectedIndex={0}
-        />
+        <IndexTitle withoutIndex title="영상" />
         <CarouselContainer>
-          <SelectedVideo controls>
-            <source src={videos[selectedIndex]} type="video/mp4" />
+          <SelectedVideo onClick={() => setOpen(true)}>
+            <source src={movies[selectedIndex]} type="video/mp4" />
           </SelectedVideo>
           <VideoListWrapper>
             <ButtonWrapper upper>
               <ArrowBtn onClick={handleUpClick} left />
             </ButtonWrapper>
             <VideoWrapper>
-              {videos.map((videoSrc: string, idx) => (
+              {movies.map((moviesrc: string, idx) => (
                 <VideoItemWrapper
                   ref={(el: HTMLDivElement) =>
                     (carouselItemsRef.current[idx] = el)
                   }
                   selected={selectedIndex === idx}>
-                  <VideoChip src={videoSrc} />
+                  <VideoChip src={moviesrc} />
                 </VideoItemWrapper>
               ))}
             </VideoWrapper>
@@ -87,6 +83,18 @@ const VideoCarousel: React.FC<{ videos: Array<string> }> = ({ videos }) => {
             </ButtonWrapper>
           </VideoListWrapper>
         </CarouselContainer>
+        <Modal {...{ open }} onClose={() => setOpen(false)}>
+          <CarouselModal
+            video
+            {...{
+              selectedIndex,
+              itemList: movies,
+              handlePrevClick: handleUpClick,
+              handleNextClick: handleDownClick,
+              handleModalClose: () => setOpen(false),
+            }}
+          />
+        </Modal>
       </WholeContainer>
     </CarouselWrapper>
   );

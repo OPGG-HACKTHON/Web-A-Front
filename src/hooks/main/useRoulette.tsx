@@ -1,16 +1,16 @@
 import { useMemo, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import {
-  keywordsDefaultState,
   keywordsState,
   rouletteDefaultState,
   rouletteState,
 } from "atom/roulette.atom";
-// import client from "lib/customAxios";
+import client from "lib/customAxios";
+import axios, { CancelTokenSource } from "axios";
 
 const useRoulette = () => {
-  const [keywords, setKeywords] = useRecoilState(keywordsState);
+  const keywords = useRecoilValue(keywordsState);
   const [roulette, setRoulette] = useRecoilState(rouletteState);
 
   const [waiting, setWaiting] = useState(false);
@@ -19,9 +19,22 @@ const useRoulette = () => {
 
   const loading = useRef(false);
   const timeout = useRef<null | ReturnType<typeof setTimeout>>(null);
+  const callback = useRef<null | (() => void)>(null);
+  const source = useRef<CancelTokenSource | null>(null);
 
   const selectedCount = useMemo(
     () => keywords.filter((v) => v.isSelected).length,
+    [keywords]
+  );
+  const selectedKeywords = useMemo(
+    () =>
+      keywords.reduce(
+        (result: string[], { name, isSelected }) => [
+          ...result,
+          ...(isSelected ? [name] : []),
+        ],
+        []
+      ),
     [keywords]
   );
 
@@ -34,19 +47,26 @@ const useRoulette = () => {
 
   const onClickSkip = () => {
     clear();
-    if (loading.current) {
-      setWaiting(true);
-      setSkip(true);
+    setWaiting(true);
+    setSkip(true);
+    if (callback.current) {
+      callback.current();
+      callback.current = null;
     }
   };
 
   const onClickReset = () => {
-    setKeywords(keywordsDefaultState);
+    clear();
     setPlayed(false);
     setSkip(true);
     setWaiting(false);
     setRoulette(rouletteDefaultState);
-    clear();
+    callback.current = null;
+    loading.current = false;
+    if (source.current) {
+      source.current.cancel();
+      source.current = null;
+    }
   };
 
   const onClickStart = () => {
@@ -61,27 +81,37 @@ const useRoulette = () => {
         setSkip(false);
       }, 0);
       setWaiting(false);
-      setRoulette({ ...rouletteDefaultState });
+      setRoulette(rouletteDefaultState);
 
-      // client.post('/api/roulette-recommendation')
-      setTimeout(() => {
-        setPlayed(true);
-        loading.current = false;
-        setRoulette({
-          ...rouletteDefaultState,
-          data: {
-            id: 348800,
-            name: "test",
-            header_image:
-              "https://cdn.akamai.steamstatic.com/steam/apps/348800/header.jpg?t=1611266489",
-            genres: ["액션", "어드벤처", "인디"],
-          },
+      source.current = axios.CancelToken.source();
+      client
+        .post("api/roulette-recommendation", selectedKeywords, {
+          cancelToken: source.current.token,
+        })
+        .then((res) => {
+          const fn = () => {
+            setWaiting(false);
+            setPlayed(true);
+            setRoulette({ ...rouletteDefaultState, data: res.data.data });
+            loading.current = false;
+          };
+
+          if (timeout.current) {
+            callback.current = fn;
+          } else {
+            fn();
+          }
+        })
+        .catch(() => {
+          onClickReset();
         });
-      }, 3000);
 
       timeout.current = setTimeout(() => {
         if (loading.current) {
           setWaiting(true);
+        }
+        if (typeof callback.current === "function") {
+          callback.current();
         }
       }, 3000);
     }
@@ -93,7 +123,7 @@ const useRoulette = () => {
     played,
     skip,
     waiting,
-    onClickSkip,
+    loading: loading.current,
     onClickReset,
     onClickStart,
   };
