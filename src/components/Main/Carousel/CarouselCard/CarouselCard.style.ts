@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardContainer = styled.div`
+const CardContainer = styled.a`
   display: flex;
   flex-direction: column;
   width: 20rem;

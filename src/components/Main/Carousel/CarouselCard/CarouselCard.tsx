@@ -15,7 +15,7 @@ const CarouselCard: React.FC<{ recommand: pickType }> = ({ recommand }) => {
   const { id, name, is_free, header_image, genres } = recommand;
 
   return (
-    <CardContainer>
+    <CardContainer href={`/about/${id}`}>
       <CardThumbnail style={{ backgroundImage: `url(${header_image})` }} />
       <CardInfo>
         <CardTitle>{name}</CardTitle>
