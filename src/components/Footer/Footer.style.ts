@@ -19,7 +19,7 @@ export const FooterText = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.9rem;
-  color: #7e7e7e;
+  color: ${({ theme }) => theme.palette.grayScale[400]};
 `;
 
 export const FooterLinks = styled.div`
@@ -31,7 +31,7 @@ export const LinkStyle = styled.a`
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.9rem;
-  color: #7e7e7e;
+  color: ${({ theme }) => theme.palette.grayScale[400]};
 
   & + & {
     margin-left: 3rem;
