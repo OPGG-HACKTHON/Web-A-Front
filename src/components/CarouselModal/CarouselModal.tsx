@@ -45,7 +45,7 @@ const CarouselModal: React.FC<ICarouselModal> = ({
             {selectedIndex} / {video ? itemList.length : itemList.length - 2}
           </IndexWrapper>
           <CloseIconWrapper onClick={handleModalClose}>
-            <Image unoptimized src={close} height={15} width={15} />
+            <Image src={close} height={15} width={15} />
           </CloseIconWrapper>
         </ModalHeader>
         {video ? (

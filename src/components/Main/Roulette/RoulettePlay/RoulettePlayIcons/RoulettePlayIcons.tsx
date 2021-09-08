@@ -17,6 +17,7 @@ import {
   RoulettePlayIconsContainer,
   RoulettePlayIconsImg,
   RoulettePlayIconsImgWrapper,
+  RoulettePlayIconsPreload,
 } from "./RoulettePlayIcons.style";
 
 interface IRoulettePlayIconsProps {
@@ -28,6 +29,19 @@ const RoulettePlayIcons: React.FC<IRoulettePlayIconsProps> = ({
   count,
   position,
 }) => {
+  const imageSources = [
+    keywordL,
+    keywordR,
+    keywordEmptyL,
+    keywordEmptyR,
+    icon1,
+    icon2,
+    icon3,
+    icon4,
+    icon5,
+    icon6,
+  ];
+
   const getIconSource = (idx: number) => {
     if (position === "left") {
       switch (idx) {
@@ -75,32 +89,35 @@ const RoulettePlayIcons: React.FC<IRoulettePlayIconsProps> = ({
   };
 
   return (
-    <RoulettePlayIconsWrapper>
-      {[...Array(3)].map((_v, i) => (
-        <React.Fragment key={i}>
-          {getIconOrder(i) <= count ? (
-            <RoulettePlayIconsImg isLeft={position === "left"}>
-              <RoulettePlayIconsContainer>
+    <>
+      <RoulettePlayIconsPreload>
+        {imageSources.map((v, i) => (
+          <Image priority src={v} key={i} />
+        ))}
+      </RoulettePlayIconsPreload>
+      <RoulettePlayIconsWrapper>
+        {[...Array(3)].map((_v, i) => (
+          <React.Fragment key={i}>
+            {getIconOrder(i) <= count ? (
+              <RoulettePlayIconsImg isLeft={position === "left"}>
+                <RoulettePlayIconsContainer>
+                  <Image src={position === "left" ? keywordL : keywordR} />
+                  <RoulettePlayIconsImgWrapper>
+                    <Image src={getIconSource(i)} />
+                  </RoulettePlayIconsImgWrapper>
+                </RoulettePlayIconsContainer>
+              </RoulettePlayIconsImg>
+            ) : (
+              <RoulettePlayIconsImg isLeft={position === "left"}>
                 <Image
-                  unoptimized
-                  src={position === "left" ? keywordL : keywordR}
+                  src={position === "left" ? keywordEmptyL : keywordEmptyR}
                 />
-                <RoulettePlayIconsImgWrapper>
-                  <Image unoptimized src={getIconSource(i)} />
-                </RoulettePlayIconsImgWrapper>
-              </RoulettePlayIconsContainer>
-            </RoulettePlayIconsImg>
-          ) : (
-            <RoulettePlayIconsImg isLeft={position === "left"}>
-              <Image
-                unoptimized
-                src={position === "left" ? keywordEmptyL : keywordEmptyR}
-              />
-            </RoulettePlayIconsImg>
-          )}
-        </React.Fragment>
-      ))}
-    </RoulettePlayIconsWrapper>
+              </RoulettePlayIconsImg>
+            )}
+          </React.Fragment>
+        ))}
+      </RoulettePlayIconsWrapper>
+    </>
   );
 };
 

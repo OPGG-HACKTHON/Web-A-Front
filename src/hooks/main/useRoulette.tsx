@@ -85,9 +85,13 @@ const useRoulette = () => {
 
       source.current = axios.CancelToken.source();
       client
-        .post("api/roulette-recommendation", selectedKeywords, {
-          cancelToken: source.current.token,
-        })
+        .post(
+          "api/roulette-recommendation",
+          { keywords: selectedKeywords },
+          {
+            cancelToken: source.current.token,
+          }
+        )
         .then((res) => {
           const fn = () => {
             setWaiting(false);
