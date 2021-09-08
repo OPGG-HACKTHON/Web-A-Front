@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import LocaleProvider from "components/LocaleProvider";
 import Header from "components/Header";
 import PageWrapper from "components/PageWrapper";
+import Footer from "components/Footer";
 import GlobalStyle from "style/GlobalStyle";
 import theme from "style/theme";
 
@@ -21,6 +22,7 @@ class MyApp extends App {
             <PageWrapper>
               <Component {...pageProps} />
             </PageWrapper>
+            <Footer />
             <GlobalStyle />
           </RecoilRoot>
         </ThemeProvider>
