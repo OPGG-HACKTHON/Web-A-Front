@@ -1,5 +1,5 @@
 name: pull-request
-on: pull_request
+on: pull_request_target
 jobs:
   eslint-prettier:
     runs-on: ubuntu-latest
