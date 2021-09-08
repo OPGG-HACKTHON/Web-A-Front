@@ -11,6 +11,7 @@ const PickedImg = styled.div`
 const PickedVideo = styled.video`
   height: 48rem;
   width: 85.4rem;
+  background-color: ${({ theme }) => theme.palette.grayScale[100]};
 `;
 
 const ButtonWrapper = styled.div`
