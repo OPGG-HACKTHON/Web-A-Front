@@ -49,7 +49,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
     if (movies && movies.length > 0) {
       let newIdx = selectedIndex - 1;
       if (newIdx < 0) {
-        newIdx = movies.length;
+        newIdx = movies.length - 1;
       }
       handleSelectedImageChange(newIdx);
     }
@@ -87,7 +87,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
           <CarouselModal
             video
             {...{
-              selectedIndex,
+              selectedIndex: selectedIndex + 1,
               itemList: movies,
               handlePrevClick: handleUpClick,
               handleNextClick: handleDownClick,
