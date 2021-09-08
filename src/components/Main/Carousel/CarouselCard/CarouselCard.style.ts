@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-const CardContainer = styled.div`
+const CardContainer = styled.a`
   display: flex;
   flex-direction: column;
-  border-radius: 1rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.grayScale[500]};
   width: 20rem;
   height: 20rem;
   margin: 4rem 1.5rem;
@@ -16,6 +14,7 @@ const CardInfo = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  border-radius: 0 0 1rem 1rem;
 `;
 
 const CardTagContainer = styled.div`
@@ -30,8 +29,8 @@ const CardTag = styled.div`
   align-items: center;
   font-size: 1.4rem;
   line-height: 1.9rem;
-  width: 6.4rem;
   height: 2.4rem;
+  padding: 0.2rem 1.5rem;
   border-radius: 1.4rem;
   margin: 0 0.25rem;
   color: ${({ theme }) => theme.palette.grayScale[100]};

@@ -14,7 +14,7 @@ const PickedVideo = styled.video`
 `;
 
 const ButtonWrapper = styled.div`
-  top: 50vh;
+  top: 50%;
   position: absolute;
   transform: translateY(-50%);
 `;
@@ -30,6 +30,7 @@ const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 `;
 
 const CloseIconWrapper = styled.div`

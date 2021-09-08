@@ -10,43 +10,49 @@ import {
 import { IndexTitle } from "components/IndexTitle";
 import { CarouselCard } from "./CarouselCard";
 
-export type dataType = {
+export type pickType = {
   id: number;
-  title: string;
-  thumbnail: string;
-  tag: Array<string>;
+  name: string;
+  is_free: boolean;
+  header_image: string;
+  genres: [string];
 };
 
-const Carousel: React.FC<{ datas: Array<dataType>; onScreenCount: number }> = ({
-  datas,
+interface ICarouselProps {
+  recommendList: [pickType];
+  onScreenCount: number;
+}
+
+const Carousel: React.FC<ICarouselProps> = ({
+  recommendList,
   onScreenCount,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
   const onScreenCountArr = React.useMemo(() => {
-    const tempDatas = [...datas];
+    const tempDatas = [...recommendList];
     const tempArr = [];
     for (let i = 0; i < tempDatas.length; i + onScreenCount) {
       tempArr.push(tempDatas.splice(i, i + onScreenCount));
     }
 
     return tempArr;
-  }, [datas, onScreenCount]);
+  }, [recommendList, onScreenCount]);
 
   useEffect(() => {
-    if (datas && datas[0]) {
+    if (recommendList && recommendList[0]) {
       carouselItemsRef.current = carouselItemsRef.current.slice(
         0,
-        datas.length
+        recommendList.length
       );
 
       setSelectedIndex(0);
     }
-  }, [datas]);
+  }, [recommendList]);
 
   const handleSelectedImageChange = (newIdx: number) => {
-    if (datas && datas.length > 0) {
+    if (recommendList && recommendList.length > 0) {
       setSelectedIndex(newIdx);
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
@@ -61,20 +67,20 @@ const Carousel: React.FC<{ datas: Array<dataType>; onScreenCount: number }> = ({
     <WholeContainer>
       <IndexTitle
         title="이런 인디칩 어때요?"
-        total={datas.length}
+        total={recommendList.length}
         clickHandler={handleSelectedImageChange}
         {...{ selectedIndex, setSelectedIndex, onScreenCount }}
       />
       <CarouselContainer>
         <CarouselImageContainer width={920}>
-          {onScreenCountArr.map((dataArr, idx) => (
+          {onScreenCountArr.map((recommandArr, idx) => (
             <Container
               key={idx}
               ref={(el: HTMLDivElement) =>
                 (carouselItemsRef.current[idx] = el)
               }>
-              {dataArr.map((data) => (
-                <CarouselCard key={data.id} {...{ data }} />
+              {recommandArr.map((recommand) => (
+                <CarouselCard key={recommand.id} {...{ recommand }} />
               ))}
             </Container>
           ))}
