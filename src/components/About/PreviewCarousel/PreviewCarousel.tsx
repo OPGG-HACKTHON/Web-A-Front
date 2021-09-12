@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "next-i18next";
 
 import {
   PickImg,
@@ -16,6 +17,8 @@ import { CarouselModal } from "components/CarouselModal";
 const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   thumbnailList,
 }) => {
+  const { t } = useTranslation("about");
+
   const [open, setOpen] = useState(false);
   const [thumbnailListState, setThumbnailListState] = useState<Array<string>>(
     []
@@ -75,7 +78,7 @@ const PrewviewCarousel: React.FC<{ thumbnailList: Array<string> }> = ({
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle withoutIndex title="프리뷰" />
+        <IndexTitle withoutIndex title={t("about_preview_title")} />
         <CarouselContainer>
           <CarouselImageContainer ref={parentRef} width={890}>
             {thumbnailListState.map((thumbnail: string, idx: number) => (

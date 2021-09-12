@@ -9,6 +9,7 @@ import {
 // custom-components
 import { IndexTitle } from "components/IndexTitle";
 import { CarouselCard } from "./CarouselCard";
+import { useTranslation } from "next-i18next";
 
 export type pickType = {
   id: number;
@@ -27,6 +28,8 @@ const Carousel: React.FC<ICarouselProps> = ({
   recommendList,
   onScreenCount,
 }) => {
+  const { t } = useTranslation("main");
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
@@ -66,7 +69,7 @@ const Carousel: React.FC<ICarouselProps> = ({
   return (
     <WholeContainer>
       <IndexTitle
-        title="이런 인디칩 어때요?"
+        title={t("main_carousel_title")}
         total={recommendList.length}
         clickHandler={handleSelectedImageChange}
         {...{ selectedIndex, setSelectedIndex, onScreenCount }}

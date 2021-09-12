@@ -1,1 +1,8 @@
-{}
+{
+  "about_info_no_name": "No name",
+  "about_info_game_genre": "Game genre",
+  "about_info_game_date": "Release date",
+  "about_info_game_introduction": "Game introduction",
+  "about_preview_title": "Preview",
+  "about_video_title": "Video"
+}

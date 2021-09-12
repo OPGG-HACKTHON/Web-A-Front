@@ -1,6 +1,3 @@
-// Type
-import { IIndexTitleProps } from "./IndexTitle.type";
-// Style
 import {
   Index,
   Title,
@@ -9,6 +6,15 @@ import {
   IndexContainer,
   NonSelectedIndex,
 } from "./IndexTitle.style";
+
+export interface IIndexTitleProps {
+  title: string;
+  total?: number;
+  clickHandler?: (idx: number) => void;
+  selectedIndex?: number;
+  onScreenCount?: number;
+  withoutIndex?: true;
+}
 
 const IndexTitle: React.FC<IIndexTitleProps> = ({
   total,
