@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
 
 import { pickType } from "../Carousel";
 
@@ -12,6 +13,8 @@ import {
 } from "./CarouselCard.style";
 
 const CarouselCard: React.FC<{ recommand: pickType }> = ({ recommand }) => {
+  const { t } = useTranslation("main");
+
   const { id, name, is_free, header_image, genres } = recommand;
 
   return (
@@ -20,7 +23,7 @@ const CarouselCard: React.FC<{ recommand: pickType }> = ({ recommand }) => {
       <CardInfo>
         <CardTitle>{name}</CardTitle>
         <CardTagContainer>
-          {is_free && <CardTag>무료</CardTag>}
+          {is_free && <CardTag>{t("main_carousel_card_tag_free")}</CardTag>}
           {genres.map((genre: string) => (
             <CardTag key={`${genre}-${id}`}>{genre}</CardTag>
           ))}

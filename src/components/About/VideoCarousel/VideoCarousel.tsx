@@ -19,7 +19,7 @@ import { IndexTitle } from "components/IndexTitle";
 import { Modal } from "components/Modal";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
-  const { t } = useTranslation("main");
+  const { t } = useTranslation("about");
 
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
