@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useTranslation } from "next-i18next";
 
 import {
   WholeContainer,
@@ -18,6 +19,8 @@ import { IndexTitle } from "components/IndexTitle";
 import { Modal } from "components/Modal";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
+  const { t } = useTranslation("main");
+
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
@@ -58,7 +61,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   return (
     <CarouselWrapper>
       <WholeContainer>
-        <IndexTitle withoutIndex title="영상" />
+        <IndexTitle withoutIndex title={t("about_video_title")} />
         <CarouselContainer>
           <SelectedVideo onClick={() => setOpen(true)}>
             <source src={movies[selectedIndex]} type="video/mp4" />
