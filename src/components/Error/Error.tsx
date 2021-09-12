@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Trans, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 
 import {
   ErrorWrapper,
