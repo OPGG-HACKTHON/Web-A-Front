@@ -7,6 +7,7 @@ import client, { updateLocale } from "lib/customAxios";
 
 import Roulette from "components/Main/Roulette";
 import Carousel from "components/Main/Carousel";
+import RankingView from "components/RankingView";
 
 export interface IndexPageProps {
   recommendList: [pickType];
@@ -17,6 +18,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
     <>
       <Roulette />
       <Carousel {...{ recommendList, onScreenCount: 4 }} />
+      <RankingView />
     </>
   );
 };
