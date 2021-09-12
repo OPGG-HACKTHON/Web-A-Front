@@ -1,4 +1,8 @@
 {
+  "about_info_no_name": "이름 없음",
+  "about_info_game_genre": "게임 장르",
+  "about_info_game_date": "출시 날짜",
+  "about_info_game_introduction": "게임 소개",
   "about_preview_title": "프리뷰",
   "about_video_title": "영상"
 }

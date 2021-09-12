@@ -1,3 +1,5 @@
+import { useTranslation } from "next-i18next";
+
 import { AboutPageProps } from "pages/about/[id]";
 
 import GameInfoHashtag from "./GameInfoHashtag";
@@ -17,13 +19,16 @@ import {
 
 const GameInfo = ({ item }: AboutPageProps) => {
   const { name, genres, release_date, short_description, header_image } = item;
+  const { t } = useTranslation("about");
 
   return (
     <GameInfoWrapper>
       <GameInfoContainer>
         <GameInfoHeader>
           <GameInfoContent>
-            <GameInfoTitle>{name ? name : "이름 없음"}</GameInfoTitle>
+            <GameInfoTitle>
+              {name ? name : t("about_info_no_name")}
+            </GameInfoTitle>
             <GameInfoHashTags>
               {genres.map((text, idx) => (
                 <GameInfoHashtag key={idx} text={text} />
@@ -35,11 +40,20 @@ const GameInfo = ({ item }: AboutPageProps) => {
 
         <GameInfoBox>
           <GameInfoBoxContent>
-            <GameInfoMeta title={"게임 장르"} desc={genres.join(", ")} />
-            <GameInfoMeta title={"출시 날짜"} desc={release_date} />
+            <GameInfoMeta
+              title={t("about_info_game_genre")}
+              desc={genres.join(", ")}
+            />
+            <GameInfoMeta
+              title={t("about_info_game_date")}
+              desc={release_date}
+            />
           </GameInfoBoxContent>
           <GameInfoBoxContent>
-            <GameInfoMeta title={"게임 소개"} desc={short_description} />
+            <GameInfoMeta
+              title={t("about_info_game_introduction")}
+              desc={short_description}
+            />
           </GameInfoBoxContent>
         </GameInfoBox>
       </GameInfoContainer>
