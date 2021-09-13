@@ -61,6 +61,7 @@ const Carousel: React.FC<ICarouselProps> = ({
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
           inline: "center",
+          block: "nearest",
           behavior: "smooth",
         });
       }
