@@ -1,3 +1,4 @@
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 import {
@@ -9,6 +10,8 @@ import {
 } from "./Footer.style";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <FooterWrapper>
       <FooterContainer>
@@ -18,13 +21,13 @@ const Footer = () => {
 
         <FooterLinks>
           <Link href="/#">
-            <LinkStyle>메타데이터 소스</LinkStyle>
+            <LinkStyle>{t("common_footer_meta")}</LinkStyle>
           </Link>
           <Link href="/#">
-            <LinkStyle>이용 약관</LinkStyle>
+            <LinkStyle>{t("common_footer_term")}</LinkStyle>
           </Link>
           <Link href="/#">
-            <LinkStyle>개인정보 처리방침</LinkStyle>
+            <LinkStyle>{t("common_footer_privacy")}</LinkStyle>
           </Link>
         </FooterLinks>
       </FooterContainer>
