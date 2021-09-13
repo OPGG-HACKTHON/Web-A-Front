@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-const WholeContainer = styled.div`
+const CarouselWrapper = styled.div`
+  padding: 10rem 0 5rem 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: ${({ theme }) => theme.palette.backgroundColors.dark}; ;
+`;
+
+const CarouselWidthContainer = styled.div`
   width: 102.4rem;
   display: flex;
   justify-content: center;
@@ -26,4 +34,10 @@ const Container = styled.div`
   display: flex;
 `;
 
-export { WholeContainer, CarouselContainer, CarouselImageContainer, Container };
+export {
+  CarouselWidthContainer,
+  CarouselContainer,
+  CarouselImageContainer,
+  Container,
+  CarouselWrapper,
+};

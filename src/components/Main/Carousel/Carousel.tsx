@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 // styled
 import {
-  WholeContainer,
+  CarouselWidthContainer,
   CarouselContainer,
   CarouselImageContainer,
+  CarouselWrapper,
   Container,
 } from "./Carousel.style";
 // custom-components
@@ -67,29 +68,31 @@ const Carousel: React.FC<ICarouselProps> = ({
   };
 
   return (
-    <WholeContainer>
-      <IndexTitle
-        title={t("main_carousel_title")}
-        total={recommendList.length}
-        clickHandler={handleSelectedImageChange}
-        {...{ selectedIndex, setSelectedIndex, onScreenCount }}
-      />
-      <CarouselContainer>
-        <CarouselImageContainer width={920}>
-          {onScreenCountArr.map((recommandArr, idx) => (
-            <Container
-              key={idx}
-              ref={(el: HTMLDivElement) =>
-                (carouselItemsRef.current[idx] = el)
-              }>
-              {recommandArr.map((recommand) => (
-                <CarouselCard key={recommand.id} {...{ recommand }} />
-              ))}
-            </Container>
-          ))}
-        </CarouselImageContainer>
-      </CarouselContainer>
-    </WholeContainer>
+    <CarouselWrapper>
+      <CarouselWidthContainer>
+        <IndexTitle
+          title={t("main_carousel_title")}
+          total={recommendList.length}
+          clickHandler={handleSelectedImageChange}
+          {...{ selectedIndex, setSelectedIndex, onScreenCount }}
+        />
+        <CarouselContainer>
+          <CarouselImageContainer width={920}>
+            {onScreenCountArr.map((recommandArr, idx) => (
+              <Container
+                key={idx}
+                ref={(el: HTMLDivElement) =>
+                  (carouselItemsRef.current[idx] = el)
+                }>
+                {recommandArr.map((recommand) => (
+                  <CarouselCard key={recommand.id} {...{ recommand }} />
+                ))}
+              </Container>
+            ))}
+          </CarouselImageContainer>
+        </CarouselContainer>
+      </CarouselWidthContainer>
+    </CarouselWrapper>
   );
 };
 
