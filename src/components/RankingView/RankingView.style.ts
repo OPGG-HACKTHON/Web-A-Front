@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const RankingViewWrapper = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  border: 1px solid red;
 `;
 
 export const RankingViewContainer = styled.div`
@@ -27,21 +26,53 @@ export const RankingViewContents = styled.div`
   border-top: 1px solid ${({ theme }) => theme.palette.grayScale[500]};
 `;
 
-export const RankingViewAutoScroll = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 38.5rem;
+export const RankingViewAutoScrollWrapper = styled.div`
   margin-right: 3.8rem;
-`;
-export const RankingViewTitle = styled.div`
-  display: flex;
-  padding: 1.1rem 2.1rem;
-  color: ${({ theme }) => theme.palette.grayScale[400]};
+  min-width: 38.5rem;
+  height: 25rem;
+  position: relative;
+  overflow: hidden;
 `;
 
-export const RankingViewImage = styled.div`
+export const RankingViewTitle = styled.span<{ isActive: boolean }>`
+  display: flex;
+  height: 5rem;
+  padding: 0 2.1rem;
+
+  font-weight: 400;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.palette.grayScale[400]};
+  & a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      border: 2px solid ${({ theme }) => theme.palette.primary.main};
+      border-radius: 0.5rem;
+      color: ${({ theme }) => theme.palette.grayScale[100]} !important;
+    `}
+`;
+
+export const RankingViewText = styled.p`
+  overflow: hidden;
+  & + & {
+    margin-left: 2.8rem;
+  }
+`;
+
+export const RankingViewImage = styled.div<{ url: string }>`
+  cursor: pointer;
   width: 100%;
-  height: 26.2rem;
+  height: 100%;
   border-radius: 1rem;
-  background: ${({ theme }) => theme.palette.grayScale[400]};
+  background-image: url(${({ url }) => url});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
