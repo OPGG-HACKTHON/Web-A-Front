@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-const CarouselWrapper = styled.div`
+interface CarouselWrapperProps {
+  aboutPage?: boolean;
+}
+const CarouselWrapper = styled.div<CarouselWrapperProps>`
   padding: 10rem 0 5rem 0;
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: ${({ theme }) => theme.palette.backgroundColors.dark}; ;
+  background-color: ${({ theme, aboutPage }) =>
+    theme.palette.backgroundColors[aboutPage ? "main" : "dark"]}; ;
 `;
 
 const CarouselWidthContainer = styled.div`

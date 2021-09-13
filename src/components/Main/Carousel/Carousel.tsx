@@ -23,13 +23,15 @@ export type pickType = {
 interface ICarouselProps {
   recommendList: [pickType];
   onScreenCount: number;
+  aboutPage?: boolean;
 }
 
 const Carousel: React.FC<ICarouselProps> = ({
   recommendList,
   onScreenCount,
+  aboutPage,
 }) => {
-  const { t } = useTranslation("main");
+  const { t } = useTranslation(aboutPage ? "about" : "main");
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
@@ -69,10 +71,12 @@ const Carousel: React.FC<ICarouselProps> = ({
   };
 
   return (
-    <CarouselWrapper>
+    <CarouselWrapper {...{ aboutPage }}>
       <CarouselWidthContainer>
         <IndexTitle
-          title={t("main_carousel_title")}
+          title={
+            aboutPage ? t("about_similar_title") : t("main_carousel_title")
+          }
           total={recommendList.length}
           clickHandler={handleSelectedImageChange}
           {...{ selectedIndex, setSelectedIndex, onScreenCount }}
