@@ -7,6 +7,8 @@ import client, { updateLocale } from "lib/customAxios";
 import { PreviewCarousel } from "components/About/PreviewCarousel";
 import { VideoCarousel } from "components/About/VideoCarousel";
 import { GameInfo } from "components/About/GameInfo";
+import Carousel from "components/Main/Carousel";
+import { useAxios } from "hooks/useAxios";
 
 export interface AboutPageProps {
   item: {
@@ -23,11 +25,31 @@ export interface AboutPageProps {
 
 const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
   const { movies } = item;
+
+  const { response, loading, error } = useAxios({
+    url: "/api/home",
+    method: "get",
+  });
+
+  if (loading) return null;
+  if (error) {
+    console.log(error);
+    return null;
+  }
+
+  const {
+    data: { random_rec_list },
+  } = response;
+
   return (
     <>
       <GameInfo {...{ item }} />
       <VideoCarousel {...{ movies }} />
       <PreviewCarousel thumbnailList={item.screenshots} />
+      <Carousel
+        aboutPage
+        {...{ recommendList: random_rec_list, onScreenCount: 4 }}
+      />
     </>
   );
 };
