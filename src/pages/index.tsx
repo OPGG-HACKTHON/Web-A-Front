@@ -7,16 +7,19 @@ import client, { updateLocale } from "lib/customAxios";
 
 import Roulette from "components/Main/Roulette";
 import Carousel from "components/Main/Carousel";
+import ReleasedIndieChip from "components/Main/ReleasedIndieChip/ReleasedIndieChip";
 
 export interface IndexPageProps {
   recommendList: [pickType];
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
+  const releasedIndieChips = recommendList.slice(4, 12);
   return (
     <>
       <Roulette />
       <Carousel {...{ recommendList, onScreenCount: 4 }} />
+      <ReleasedIndieChip {...{ releasedIndieChips }} />
     </>
   );
 };
