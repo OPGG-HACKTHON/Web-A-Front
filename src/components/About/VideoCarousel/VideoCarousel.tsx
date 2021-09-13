@@ -17,6 +17,7 @@ import { ArrowBtn } from "components/ArrowBtn";
 import { CarouselModal } from "components/CarouselModal";
 import { IndexTitle } from "components/IndexTitle";
 import { Modal } from "components/Modal";
+import { VideoNotExist } from "./VideoNotExist";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   const { t } = useTranslation("about");
@@ -62,42 +63,48 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
     <CarouselWrapper>
       <WholeContainer>
         <IndexTitle withoutIndex title={t("about_video_title")} />
-        <CarouselContainer>
-          <SelectedVideo onClick={() => setOpen(true)}>
-            <source src={movies[selectedIndex]} type="video/mp4" />
-          </SelectedVideo>
-          <VideoListWrapper>
-            <ButtonWrapper upper>
-              <ArrowBtn onClick={handleUpClick} left />
-            </ButtonWrapper>
-            <VideoWrapper>
-              {movies.map((moviesrc: string, idx) => (
-                <VideoItemWrapper
-                  ref={(el: HTMLDivElement) =>
-                    (carouselItemsRef.current[idx] = el)
-                  }
-                  selected={selectedIndex === idx}>
-                  <VideoChip src={moviesrc} />
-                </VideoItemWrapper>
-              ))}
-            </VideoWrapper>
-            <ButtonWrapper>
-              <ArrowBtn onClick={handleDownClick} />
-            </ButtonWrapper>
-          </VideoListWrapper>
-        </CarouselContainer>
-        <Modal {...{ open }} onClose={() => setOpen(false)}>
-          <CarouselModal
-            video
-            {...{
-              selectedIndex: selectedIndex + 1,
-              itemList: movies,
-              handlePrevClick: handleUpClick,
-              handleNextClick: handleDownClick,
-              handleModalClose: () => setOpen(false),
-            }}
-          />
-        </Modal>
+        {movies.length ? (
+          <>
+            <CarouselContainer>
+              <SelectedVideo onClick={() => setOpen(true)}>
+                <source src={movies[selectedIndex]} type="video/mp4" />
+              </SelectedVideo>
+              <VideoListWrapper>
+                <ButtonWrapper upper>
+                  <ArrowBtn onClick={handleUpClick} left />
+                </ButtonWrapper>
+                <VideoWrapper>
+                  {movies.map((moviesrc: string, idx) => (
+                    <VideoItemWrapper
+                      ref={(el: HTMLDivElement) =>
+                        (carouselItemsRef.current[idx] = el)
+                      }
+                      selected={selectedIndex === idx}>
+                      <VideoChip src={moviesrc} />
+                    </VideoItemWrapper>
+                  ))}
+                </VideoWrapper>
+                <ButtonWrapper>
+                  <ArrowBtn onClick={handleDownClick} />
+                </ButtonWrapper>
+              </VideoListWrapper>
+            </CarouselContainer>
+            <Modal {...{ open }} onClose={() => setOpen(false)}>
+              <CarouselModal
+                video
+                {...{
+                  selectedIndex: selectedIndex + 1,
+                  itemList: movies,
+                  handlePrevClick: handleUpClick,
+                  handleNextClick: handleDownClick,
+                  handleModalClose: () => setOpen(false),
+                }}
+              />
+            </Modal>
+          </>
+        ) : (
+          <VideoNotExist />
+        )}
       </WholeContainer>
     </CarouselWrapper>
   );
