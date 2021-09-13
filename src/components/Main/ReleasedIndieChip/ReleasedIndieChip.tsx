@@ -43,7 +43,7 @@ const ReleasedIndieChip: React.FC<{ releasedIndieChips: Array<pickType> }> = ({
   useEffect(() => {
     if (parentRef?.current && carouselItemsRef?.current[1]) {
       parentRef?.current?.scrollTo({
-        left: carouselItemsRef?.current[1].clientWidth,
+        left: carouselItemsRef?.current[1].clientWidth / 5.5,
       });
     }
   }, [thumbnailListState]);
