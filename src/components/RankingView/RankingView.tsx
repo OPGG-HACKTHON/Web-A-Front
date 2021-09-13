@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 import { useInterval } from "hooks/main";
 import { useIntersect } from "hooks/main";
@@ -35,6 +36,8 @@ const RankingView = ({ rankingList }: RankingViewProps) => {
   const entry = useIntersect(scrollWrapperRef, {});
   const isVisible = !!entry?.isIntersecting; //threshold에 들어왔을때만 setInterval
 
+  const { t } = useTranslation("main");
+
   const RankingScrollToTop = () => {
     return <div ref={scrollRefTop} />;
   };
@@ -60,7 +63,7 @@ const RankingView = ({ rankingList }: RankingViewProps) => {
   return (
     <RankingViewWrapper>
       <RankingViewContainer>
-        <RankingViewHeader>실시간 VIEW 랭킹</RankingViewHeader>
+        <RankingViewHeader>{t("main_view_ranking_title")}</RankingViewHeader>
         <RankingViewContents>
           <RankingViewAutoScrollWrapper ref={scrollWrapperRef}>
             <RankingScrollToTop />
