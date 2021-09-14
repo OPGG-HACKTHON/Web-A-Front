@@ -23,7 +23,7 @@ export const IndiPickContents = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 4rem 5.2rem 0 5.2rem;
-  border-top: 1px solid ${({ theme }) => theme.palette.grayScale[500]};
+  border-top: 0.1rem solid ${({ theme }) => theme.palette.grayScale[500]};
 `;
 export const IndiPickVS = styled.span`
   display: flex;
@@ -75,7 +75,7 @@ export const IndiPickLikeBox = styled.button<{ btnState?: string }>`
   ${({ btnState }) =>
     btnState === "default"
       ? css`
-          border: 1px solid ${({ theme }) => theme.palette.primary.main};
+          border: 0.1rem solid ${({ theme }) => theme.palette.primary.main};
           color: ${({ theme }) => theme.palette.grayScale[100]};
           background-color: transparent;
         `
@@ -145,8 +145,8 @@ export const IndiPickItemBoxGenres = styled.div`
 export const IndiPickItemGenre = styled.span`
   padding: 0.2rem 1.4rem;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
   border-radius: 1.4rem;
   color: ${({ theme }) => theme.palette.grayScale[100]};
   background-color: ${({ theme }) => theme.palette.primary.main};
