@@ -1,4 +1,4 @@
 export default interface IKeyword {
-  name: string;
+  key: string;
   isSelected: boolean;
 }
