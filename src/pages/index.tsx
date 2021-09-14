@@ -10,12 +10,27 @@ import client, { updateLocale } from "lib/customAxios";
 
 import Roulette from "components/Main/Roulette";
 import Carousel from "components/Main/Carousel";
+import IndiPick from "../components/IndiPick/IndiPick";
+
+import indiPick_list_dummy from "../components/IndiPick/dummyDatas.json";
 
 export interface IndexPageProps {
   recommendList: [pickType];
+  indiPickList: [
+    {
+      name: string;
+      id: number;
+      like: number;
+      header_image: string;
+      genres: [string];
+    }
+  ];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
+const IndexPage: NextPage<IndexPageProps> = ({
+  recommendList,
+  indiPickList,
+}) => {
   const { t } = useTranslation();
   const { locale } = useRouter();
 
@@ -50,6 +65,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
       </Head>
       <Roulette />
       <Carousel {...{ recommendList, onScreenCount: 4 }} />
+      <IndiPick {...{ indiPickList }} />
     </>
   );
 };
@@ -68,6 +84,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(locale ?? "ko", ["common", "main"])),
       recommendList: random_rec_list,
+      indiPickList: indiPick_list_dummy,
     },
   };
 };
