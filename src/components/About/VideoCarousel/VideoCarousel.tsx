@@ -25,6 +25,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleSelectedImageChange = (newIdx: number) => {
     if (movies && movies.length > 0) {
@@ -59,6 +60,11 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
     }
   };
 
+  const handleVideoModalClose = () => {
+    videoRef?.current?.pause();
+    setOpen(false);
+  };
+
   return (
     <CarouselWrapper>
       <WholeContainer>
@@ -89,7 +95,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
                 </ButtonWrapper>
               </VideoListWrapper>
             </CarouselContainer>
-            <Modal {...{ open }} onClose={() => setOpen(false)}>
+            <Modal {...{ open }} onClose={handleVideoModalClose}>
               <CarouselModal
                 video
                 {...{
@@ -97,7 +103,8 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
                   itemList: movies,
                   handlePrevClick: handleUpClick,
                   handleNextClick: handleDownClick,
-                  handleModalClose: () => setOpen(false),
+                  handleModalClose: handleVideoModalClose,
+                  videoRef,
                 }}
               />
             </Modal>
