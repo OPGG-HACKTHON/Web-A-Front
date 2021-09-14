@@ -1,5 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import axios, { CancelTokenSource } from "axios";
+import { useTranslation } from "next-i18next";
 
 import {
   keywordsState,
@@ -7,9 +9,10 @@ import {
   rouletteState,
 } from "atom/roulette.atom";
 import client from "lib/customAxios";
-import axios, { CancelTokenSource } from "axios";
 
 const useRoulette = () => {
+  const { t } = useTranslation("main");
+
   const keywords = useRecoilValue(keywordsState);
   const [roulette, setRoulette] = useRecoilState(rouletteState);
 
@@ -29,9 +32,9 @@ const useRoulette = () => {
   const selectedKeywords = useMemo(
     () =>
       keywords.reduce(
-        (result: string[], { name, isSelected }) => [
+        (result: string[], { key, isSelected }) => [
           ...result,
-          ...(isSelected ? [name] : []),
+          ...(isSelected ? [t(key)] : []),
         ],
         []
       ),

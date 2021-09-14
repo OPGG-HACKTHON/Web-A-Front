@@ -23,9 +23,7 @@ const useKeywords = () => {
         isSelected: !keyword.isSelected,
       };
 
-      setKeywords(
-        keywords.map((v) => (v.name === keyword.name ? newValue : v))
-      );
+      setKeywords(keywords.map((v) => (v.key === keyword.key ? newValue : v)));
     },
     [keywords, selectedKeywords, setKeywords]
   );
