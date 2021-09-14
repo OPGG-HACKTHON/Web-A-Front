@@ -38,7 +38,7 @@ const useRoulette = () => {
         ],
         []
       ),
-    [keywords]
+    [keywords, t]
   );
 
   const clear = () => {
