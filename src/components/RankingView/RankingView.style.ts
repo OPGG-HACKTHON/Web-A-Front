@@ -23,7 +23,7 @@ export const RankingViewHeader = styled.h2`
 export const RankingViewContents = styled.div`
   display: flex;
   padding: 4rem 5.2rem 0 5.2rem;
-  border-top: 1px solid ${({ theme }) => theme.palette.grayScale[500]};
+  border-top: 0.1rem solid ${({ theme }) => theme.palette.grayScale[500]};
 `;
 
 export const RankingViewAutoScrollWrapper = styled.div`
@@ -50,12 +50,12 @@ export const RankingViewTitle = styled.span<{ isActive: boolean }>`
     text-decoration: none;
   }
 
-  ${(props) =>
-    props.isActive &&
+  ${({ isActive, theme }) =>
+    isActive &&
     css`
-      border: 2px solid ${({ theme }) => theme.palette.primary.main};
+      border: 0.2rem solid ${theme.palette.primary.main};
       border-radius: 0.5rem;
-      color: ${({ theme }) => theme.palette.grayScale[100]} !important;
+      color: ${theme.palette.grayScale[100]};
     `}
 `;
 
