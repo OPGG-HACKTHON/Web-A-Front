@@ -70,7 +70,8 @@ const RankingView = ({ rankingList }: RankingViewProps) => {
             {rankingList.map((list, idx) => (
               <RankingViewTitle key={list.id} isActive={idx === activeNum}>
                 <Link href={`/about/${list.id}`}>
-                  <a href="#!">
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <a>
                     <RankingViewText>{idx + 1}</RankingViewText>
                     <RankingViewText> {list.name}</RankingViewText>
                   </a>
