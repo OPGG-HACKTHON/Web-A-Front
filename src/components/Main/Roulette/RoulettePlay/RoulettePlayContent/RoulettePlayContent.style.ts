@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const RoulettePlayContentWrapper = styled.div`
   margin: 0 1.9rem;
@@ -140,4 +141,12 @@ export const RoulettePlayContentBtn = styled.span`
   border: 2px solid #c7c7c7;
   border-radius: 5px;
   padding: 0.15rem 1.5rem;
+`;
+
+export const RoulettePlayContentImage = styled(Image)<{
+  width: number;
+  height: number;
+}>`
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
 `;
