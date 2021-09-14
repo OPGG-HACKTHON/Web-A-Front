@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,6 +14,7 @@ import {
   //
   IndiPickItemWrapper,
   IndiPickLikeBox,
+  IndiPickLikeBoxContainer,
   IndiPickLikeBoxBottom,
   IndiPickItemBox,
   //
@@ -23,17 +25,26 @@ import {
   IndiPickItemGenre,
 } from "./IndiPick.style";
 
-type ItemType = {
+interface IndiPickItemProps {
   name: string;
   id: number;
   like: number;
   header_image: string;
   genres: [string];
-  isLeft?: boolean;
-  isActive?: boolean;
-};
+  isLeft: boolean;
+  btnState: string;
+  onClick: (id: number) => void;
+}
 interface IndiPickProps {
-  indiPickList: [ItemType];
+  indiPickList: [
+    {
+      name: string;
+      id: number;
+      like: number;
+      header_image: string;
+      genres: [string];
+    }
+  ];
 }
 
 const IndiPckItem = ({
@@ -43,24 +54,40 @@ const IndiPckItem = ({
   header_image,
   genres,
   isLeft,
-  isActive,
-}: ItemType) => {
-  console.log(isLeft);
+  btnState,
+  onClick,
+}: IndiPickItemProps) => {
+  const handleClick = () => onClick(id);
+  const [num, setNum] = useState<number>(like);
+
+  useEffect(() => {
+    setNum(like);
+  }, [like]);
   return (
     <IndiPickItemWrapper isLeft={isLeft}>
-      <IndiPickLikeBox isActive={isActive}>
-        {isActive ? (
-          <>
+      <IndiPickLikeBox btnState={btnState} onClick={handleClick}>
+        {btnState === "default" ? (
+          <IndiPickLikeBoxContainer>
+            <h4>Click!</h4>
+            <IndiPickLikeBoxBottom>
+              <Image src={LikeIcon} height={16} width={16} />
+              <p>{num}</p>
+            </IndiPickLikeBoxBottom>
+          </IndiPickLikeBoxContainer>
+        ) : btnState === "active" ? (
+          <IndiPickLikeBoxContainer>
             <h2>Like</h2>
             <IndiPickLikeBoxBottom>
               <Image src={LikeIcon} height={16} width={16} />
-              <p>{like}</p>
+              <p>{num}</p>
             </IndiPickLikeBoxBottom>
-          </>
+          </IndiPickLikeBoxContainer>
         ) : (
-          <p>
-            Vote <br /> Complete
-          </p>
+          <IndiPickLikeBoxContainer>
+            <p>
+              Vote <br /> Complete
+            </p>
+          </IndiPickLikeBoxContainer>
         )}
       </IndiPickLikeBox>
 
@@ -84,8 +111,23 @@ const IndiPckItem = ({
   );
 };
 const IndiPick = ({ indiPickList }: IndiPickProps) => {
-  const { t } = useTranslation("main");
   const items = [...indiPickList];
+
+  const { t } = useTranslation("main");
+  const [pickState, setPickState] = useState([
+    { id: items[0].id, state: "default", like: items[0].like },
+    { id: items[1].id, state: "default", like: items[1].like },
+  ]);
+
+  const onClick = (id: number) => {
+    setPickState(
+      pickState.map((obj) =>
+        obj.id === id
+          ? { ...obj, state: "active", like: obj.like + 1 }
+          : { ...obj, state: "inactive" }
+      )
+    );
+  };
 
   return (
     <IndiPickWrapper>
@@ -96,21 +138,23 @@ const IndiPick = ({ indiPickList }: IndiPickProps) => {
           <IndiPckItem
             name={items[0].name}
             id={items[0].id}
-            like={items[0].like}
             header_image={items[0].header_image}
             genres={items[0].genres}
             isLeft={true}
-            isActive={true}
+            like={pickState[0].like}
+            btnState={pickState[0].state}
+            onClick={onClick}
           />
           <IndiPickVS>VS</IndiPickVS>
           <IndiPckItem
             name={items[1].name}
             id={items[1].id}
-            like={items[1].like}
             header_image={items[1].header_image}
             genres={items[1].genres}
             isLeft={false}
-            isActive={false}
+            like={pickState[1].like}
+            btnState={pickState[1].state}
+            onClick={onClick}
           />
         </IndiPickContents>
       </IndiPickContainer>

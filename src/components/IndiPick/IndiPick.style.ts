@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const IndiPickWrapper = styled.section`
   display: flex;
@@ -43,7 +43,7 @@ export const IndiPickItemWrapper = styled.div<{ isLeft?: boolean }>`
     color: inherit;
   }
 `;
-export const IndiPickLikeBox = styled.span<{ isActive?: boolean }>`
+export const IndiPickLikeBox = styled.button<{ btnState?: string }>`
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -52,18 +52,17 @@ export const IndiPickLikeBox = styled.span<{ isActive?: boolean }>`
   width: 10.2rem;
   height: 21.8rem;
   border-radius: 0.5rem;
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.palette.grayScale[100] : theme.palette.grayScale[300]};
-  background: ${({ theme, isActive }) =>
-    isActive
-      ? theme.palette.primary.main
-      : theme.palette.backgroundColors.light};
 
-  & > h2 {
+  & h2 {
     font-weight: 500;
     font-size: 2.8rem;
     line-height: 2.8rem;
     margin-bottom: 0.7rem;
+  }
+  & h4 {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
   & p {
     font-weight: 400;
@@ -72,8 +71,34 @@ export const IndiPickLikeBox = styled.span<{ isActive?: boolean }>`
     text-align: center;
     margin-left: 0.6rem;
   }
+
+  ${({ btnState }) =>
+    btnState === "default"
+      ? css`
+          border: 1px solid ${({ theme }) => theme.palette.primary.main};
+          color: ${({ theme }) => theme.palette.grayScale[100]};
+          background-color: transparent;
+        `
+      : btnState === "active"
+      ? css`
+          cursor: not-allowed;
+          pointer-events: none;
+          border: none;
+          color: ${({ theme }) => theme.palette.grayScale[100]};
+          background-color: ${({ theme }) => theme.palette.primary.main};
+        `
+      : css`
+          cursor: not-allowed;
+          pointer-events: none;
+          border: none;
+          color: ${({ theme }) => theme.palette.grayScale[300]};
+          background-color: ${({ theme }) => theme.palette.grayScale[100]};
+        `}
 `;
 
+export const IndiPickLikeBoxContainer = styled.div`
+  pointer-events: none;
+`;
 export const IndiPickLikeBoxBottom = styled.span`
   display: flex;
   align-items: center;
