@@ -9,7 +9,7 @@ export const KeywordWrapper = styled.div`
 
 export const KeywordItem = styled.button<{ isSelected: boolean }>`
   border: none;
-  width: 12rem;
+  width: 15rem;
   height: 4rem;
   padding: 1rem;
   border-radius: 3.3rem;

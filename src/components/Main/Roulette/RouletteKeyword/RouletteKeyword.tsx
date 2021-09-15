@@ -1,8 +1,11 @@
+import { useTranslation } from "next-i18next";
+
 import { useKeywords } from "hooks/main";
 
 import { KeywordItem, KeywordWrapper } from "./RouletteKeyword.style";
 
 const RouletteKeyword: React.FC = () => {
+  const { t } = useTranslation("main");
   const { keywords, handleOnClick } = useKeywords();
 
   return (
@@ -12,7 +15,7 @@ const RouletteKeyword: React.FC = () => {
           key={idx}
           onClick={() => handleOnClick(item)}
           isSelected={item.isSelected}>
-          {item.name}
+          {t(item.key)}
         </KeywordItem>
       ))}
     </KeywordWrapper>
