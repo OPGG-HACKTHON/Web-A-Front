@@ -26,11 +26,14 @@ export interface IndexPageProps {
   ];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ recommendList, recommendList }) => {
+const IndexPage: NextPage<IndexPageProps> = ({
+  recommendList,
+  rankingList,
+}) => {
   const releasedIndieChips = recommendList.slice(4, 12);
   const { t } = useTranslation();
   const { locale } = useRouter();
-  
+
   return (
     <>
       <Head>
