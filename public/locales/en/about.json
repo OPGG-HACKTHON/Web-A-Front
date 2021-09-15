@@ -4,5 +4,7 @@
   "about_info_game_date": "Release date",
   "about_info_game_introduction": "Game introduction",
   "about_preview_title": "Preview",
-  "about_video_title": "Video"
+  "about_video_title": "Video",
+  "about_video_not_exist": "Video not exist yet.",
+  "about_similar_title": "Similar Tags Indie Chip"
 }

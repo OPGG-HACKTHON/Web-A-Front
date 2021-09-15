@@ -40,7 +40,7 @@ export const RouletteSubTitle = styled.h3`
   font-size: 1.8rem;
   line-height: 2.254rem;
   letter-spacing: -0.03em;
-  margin-right: 0.1rem;
+  margin-right: 0.5rem;
   color: ${({ theme }) => theme.palette.grayScale[100]};
 `;
 

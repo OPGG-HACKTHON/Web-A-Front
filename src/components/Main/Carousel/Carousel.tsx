@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 // styled
 import {
-  WholeContainer,
+  CarouselWidthContainer,
   CarouselContainer,
   CarouselImageContainer,
+  CarouselWrapper,
   Container,
 } from "./Carousel.style";
 // custom-components
@@ -22,13 +23,15 @@ export type pickType = {
 interface ICarouselProps {
   recommendList: [pickType];
   onScreenCount: number;
+  aboutPage?: boolean;
 }
 
 const Carousel: React.FC<ICarouselProps> = ({
   recommendList,
   onScreenCount,
+  aboutPage,
 }) => {
-  const { t } = useTranslation("main");
+  const { t } = useTranslation(aboutPage ? "about" : "main");
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
@@ -60,6 +63,7 @@ const Carousel: React.FC<ICarouselProps> = ({
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
           inline: "center",
+          block: "nearest",
           behavior: "smooth",
         });
       }
@@ -67,29 +71,33 @@ const Carousel: React.FC<ICarouselProps> = ({
   };
 
   return (
-    <WholeContainer>
-      <IndexTitle
-        title={t("main_carousel_title")}
-        total={recommendList.length}
-        clickHandler={handleSelectedImageChange}
-        {...{ selectedIndex, setSelectedIndex, onScreenCount }}
-      />
-      <CarouselContainer>
-        <CarouselImageContainer width={920}>
-          {onScreenCountArr.map((recommandArr, idx) => (
-            <Container
-              key={idx}
-              ref={(el: HTMLDivElement) =>
-                (carouselItemsRef.current[idx] = el)
-              }>
-              {recommandArr.map((recommand) => (
-                <CarouselCard key={recommand.id} {...{ recommand }} />
-              ))}
-            </Container>
-          ))}
-        </CarouselImageContainer>
-      </CarouselContainer>
-    </WholeContainer>
+    <CarouselWrapper {...{ aboutPage }}>
+      <CarouselWidthContainer>
+        <IndexTitle
+          title={
+            aboutPage ? t("about_similar_title") : t("main_carousel_title")
+          }
+          total={recommendList.length}
+          clickHandler={handleSelectedImageChange}
+          {...{ selectedIndex, setSelectedIndex, onScreenCount }}
+        />
+        <CarouselContainer>
+          <CarouselImageContainer width={920}>
+            {onScreenCountArr.map((recommandArr, idx) => (
+              <Container
+                key={idx}
+                ref={(el: HTMLDivElement) =>
+                  (carouselItemsRef.current[idx] = el)
+                }>
+                {recommandArr.map((recommand) => (
+                  <CarouselCard key={recommand.id} {...{ recommand }} />
+                ))}
+              </Container>
+            ))}
+          </CarouselImageContainer>
+        </CarouselContainer>
+      </CarouselWidthContainer>
+    </CarouselWrapper>
   );
 };
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 const CardContainer = styled.a`
   display: flex;
   flex-direction: column;
+  text-decoration: none;
   width: 20rem;
   height: 20rem;
   margin: 4rem 1.5rem;
@@ -38,6 +39,7 @@ const CardTag = styled.div`
 `;
 
 const CardTitle = styled.div`
+  color: ${({ theme }) => theme.palette.grayScale[700]};
   width: 100%;
   font-size: 1.8rem;
   line-height: 2.3rem;
@@ -45,6 +47,7 @@ const CardTitle = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
+  text-decoration: none;
 
   white-space: normal;
   word-wrap: break-word;
