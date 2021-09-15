@@ -15,7 +15,8 @@ import { Carousel } from "components/Main/Carousel";
 
 import ReleasedIndieChip from "components/Main/ReleasedIndieChip/ReleasedIndieChip";
 import ranking_list_dummy from "../components/RankingView/dummyDatas.json";
-import indiPick_list_dummy from "../components/IndiPick/dummyDatas.json";
+import indiPick_list_dummy_ko from "../components/IndiPick/dummyDatasKo.json";
+import indiPick_list_dummy_en from "../components/IndiPick/dummyDatasEn.json";
 
 export interface IndexPageProps {
   recommendList: [pickType];
@@ -45,7 +46,6 @@ const IndexPage: NextPage<IndexPageProps> = ({
   const releasedIndieChips = recommendList.slice(4, 12);
   const { t } = useTranslation();
   const { locale } = useRouter();
-
   return (
     <>
       <Head>
@@ -98,8 +98,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(locale ?? "ko", ["common", "main"])),
       recommendList: random_rec_list,
-      indiPickList: indiPick_list_dummy,
       rankingList: ranking_list_dummy,
+      indiPickList:
+        locale === "ko" ? indiPick_list_dummy_ko : indiPick_list_dummy_en,
     },
   };
 };

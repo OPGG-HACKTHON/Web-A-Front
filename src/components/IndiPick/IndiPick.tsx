@@ -47,7 +47,7 @@ interface IndiPickProps {
   ];
 }
 
-const IndiPckItem = ({
+const IndiPickItem = ({
   name,
   id,
   like,
@@ -135,7 +135,7 @@ const IndiPick = ({ indiPickList }: IndiPickProps) => {
         <IndiPickHeader>{t("main_indi_pick_title")}</IndiPickHeader>
 
         <IndiPickContents>
-          <IndiPckItem
+          <IndiPickItem
             name={items[0].name}
             id={items[0].id}
             header_image={items[0].header_image}
@@ -146,7 +146,7 @@ const IndiPick = ({ indiPickList }: IndiPickProps) => {
             onClick={onClick}
           />
           <IndiPickVersus>VS</IndiPickVersus>
-          <IndiPckItem
+          <IndiPickItem
             name={items[1].name}
             id={items[1].id}
             header_image={items[1].header_image}
