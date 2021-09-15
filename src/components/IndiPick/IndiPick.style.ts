@@ -25,7 +25,7 @@ export const IndiPickContents = styled.div`
   padding: 4rem 5.2rem 0 5.2rem;
   border-top: 0.1rem solid ${({ theme }) => theme.palette.grayScale[500]};
 `;
-export const IndiPickVS = styled.span`
+export const IndiPickVersus = styled.span`
   display: flex;
   align-items: center;
   font-weight: 500;

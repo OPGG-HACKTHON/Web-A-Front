@@ -10,7 +10,7 @@ import {
   IndiPickContainer,
   IndiPickHeader,
   IndiPickContents,
-  IndiPickVS,
+  IndiPickVersus,
   //
   IndiPickItemWrapper,
   IndiPickLikeBox,
@@ -145,7 +145,7 @@ const IndiPick = ({ indiPickList }: IndiPickProps) => {
             btnState={pickState[0].state}
             onClick={onClick}
           />
-          <IndiPickVS>VS</IndiPickVS>
+          <IndiPickVersus>VS</IndiPickVersus>
           <IndiPckItem
             name={items[1].name}
             id={items[1].id}
