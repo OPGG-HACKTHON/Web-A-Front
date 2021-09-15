@@ -82,6 +82,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
                 <VideoWrapper>
                   {movies.map((moviesrc: string, idx) => (
                     <VideoItemWrapper
+                      key={`${moviesrc}-${idx}`}
                       ref={(el: HTMLDivElement) =>
                         (carouselItemsRef.current[idx] = el)
                       }
