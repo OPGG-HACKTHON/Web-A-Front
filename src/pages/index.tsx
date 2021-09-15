@@ -10,10 +10,13 @@ import client, { updateLocale } from "lib/customAxios";
 
 import Roulette from "components/Main/Roulette";
 import RankingView from "components/RankingView";
+import IndiPick from "../components/IndiPick/IndiPick";
 import { Carousel } from "components/Main/Carousel";
 
 import ReleasedIndieChip from "components/Main/ReleasedIndieChip/ReleasedIndieChip";
 import ranking_list_dummy from "../components/RankingView/dummyDatas.json";
+import indiPick_list_dummy_ko from "../components/IndiPick/dummyDatasKo.json";
+import indiPick_list_dummy_en from "../components/IndiPick/dummyDatasEn.json";
 
 export interface IndexPageProps {
   recommendList: [pickType];
@@ -24,16 +27,25 @@ export interface IndexPageProps {
       header_image: string;
     }
   ];
+  indiPickList: [
+    {
+      name: string;
+      id: number;
+      like: number;
+      header_image: string;
+      genres: [string];
+    }
+  ];
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
   recommendList,
+  indiPickList,
   rankingList,
 }) => {
   const releasedIndieChips = recommendList.slice(4, 12);
   const { t } = useTranslation();
   const { locale } = useRouter();
-
   return (
     <>
       <Head>
@@ -66,6 +78,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
       <Roulette />
       <Carousel {...{ recommendList, onScreenCount: 4 }} />
       <RankingView {...{ rankingList }} />
+      <IndiPick {...{ indiPickList }} />
       <ReleasedIndieChip {...{ releasedIndieChips }} />
     </>
   );
@@ -86,6 +99,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
       ...(await serverSideTranslations(locale ?? "ko", ["common", "main"])),
       recommendList: random_rec_list,
       rankingList: ranking_list_dummy,
+      indiPickList:
+        locale === "ko" ? indiPick_list_dummy_ko : indiPick_list_dummy_en,
     },
   };
 };
