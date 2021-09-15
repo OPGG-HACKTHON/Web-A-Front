@@ -9,14 +9,27 @@ import { pickType } from "components/Main/Carousel/Carousel";
 import client, { updateLocale } from "lib/customAxios";
 
 import Roulette from "components/Main/Roulette";
+import RankingView from "components/RankingView";
 import { Carousel } from "components/Main/Carousel";
+
 import ReleasedIndieChip from "components/Main/ReleasedIndieChip/ReleasedIndieChip";
+import ranking_list_dummy from "../components/RankingView/dummyDatas.json";
 
 export interface IndexPageProps {
   recommendList: [pickType];
+  rankingList: [
+    {
+      name: string;
+      id: number;
+      header_image: string;
+    }
+  ];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
+const IndexPage: NextPage<IndexPageProps> = ({
+  recommendList,
+  rankingList,
+}) => {
   const releasedIndieChips = recommendList.slice(4, 12);
   const { t } = useTranslation();
   const { locale } = useRouter();
@@ -52,6 +65,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ recommendList }) => {
       </Head>
       <Roulette />
       <Carousel {...{ recommendList, onScreenCount: 4 }} />
+      <RankingView {...{ rankingList }} />
       <ReleasedIndieChip {...{ releasedIndieChips }} />
     </>
   );
@@ -71,6 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(locale ?? "ko", ["common", "main"])),
       recommendList: random_rec_list,
+      rankingList: ranking_list_dummy,
     },
   };
 };
