@@ -31,7 +31,7 @@ const GameInfo = ({ item }: AboutPageProps) => {
             </GameInfoTitle>
             <GameInfoHashTags>
               {genres.map((text: string, idx: number) => (
-                <GameInfoHashtag key={idx} text={text} />
+                <GameInfoHashtag key={`${text}_${idx}`} text={text} />
               ))}
             </GameInfoHashTags>
           </GameInfoContent>
