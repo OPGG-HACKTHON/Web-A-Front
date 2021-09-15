@@ -24,7 +24,7 @@ export interface ICarouselModal {
   handleNextClick: () => void;
   handleModalClose: () => void;
   video?: boolean;
-  videoRef?: React.RefObject<HTMLVideoElement | undefined>;
+  videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
 const CarouselModal: React.FC<ICarouselModal> = ({
