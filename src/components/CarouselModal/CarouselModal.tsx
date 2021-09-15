@@ -24,6 +24,7 @@ export interface ICarouselModal {
   handleNextClick: () => void;
   handleModalClose: () => void;
   video?: boolean;
+  videoRef?: React.RefObject<HTMLVideoElement | undefined>;
 }
 
 const CarouselModal: React.FC<ICarouselModal> = ({
@@ -33,6 +34,7 @@ const CarouselModal: React.FC<ICarouselModal> = ({
   handleNextClick,
   handleModalClose,
   video,
+  videoRef,
 }) => {
   return (
     <>
@@ -50,8 +52,12 @@ const CarouselModal: React.FC<ICarouselModal> = ({
         </ModalHeader>
         {video ? (
           <>
-            <PickedVideo controls>
-              <source src={itemList[selectedIndex]} type="video/mp4" />
+            <PickedVideo controls ref={videoRef}>
+              <source
+                id={itemList[selectedIndex - 1]}
+                src={itemList[selectedIndex - 1]}
+                type="video/mp4"
+              />
             </PickedVideo>
             <DotWrapper>
               {itemList.map((item, i) => (

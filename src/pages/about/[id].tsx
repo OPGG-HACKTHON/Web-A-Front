@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { GetServerSideProps, NextPage } from "next";
@@ -9,8 +10,8 @@ import client, { updateLocale } from "lib/customAxios";
 import { PreviewCarousel } from "components/About/PreviewCarousel";
 import { VideoCarousel } from "components/About/VideoCarousel";
 import { GameInfo } from "components/About/GameInfo";
-import { useRouter } from "next/router";
-
+import { Carousel } from "components/Main/Carousel";
+import { useAxios } from "hooks/useAxios";
 export interface AboutPageProps {
   item: {
     id: number;
@@ -29,6 +30,21 @@ const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
   const { locale } = useRouter();
 
   const { movies } = item;
+
+  const { response, loading, error } = useAxios({
+    url: "/api/home",
+    method: "get",
+  });
+
+  if (loading) return null;
+  if (error) {
+    console.log(error);
+    return null;
+  }
+
+  const {
+    data: { random_rec_list },
+  } = response;
 
   return (
     <>
@@ -60,6 +76,10 @@ const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
       <GameInfo {...{ item }} />
       <VideoCarousel {...{ movies }} />
       <PreviewCarousel thumbnailList={item.screenshots} />
+      <Carousel
+        aboutPage
+        {...{ recommendList: random_rec_list, onScreenCount: 4 }}
+      />
     </>
   );
 };
