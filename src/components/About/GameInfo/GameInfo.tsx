@@ -12,6 +12,8 @@ import {
   GameInfoContent,
   GameInfoTitle,
   GameInfoHashTags,
+  GameInfoButtons,
+  GameInfoButton,
   GameInfoImg,
   GameInfoBox,
   GameInfoBoxContent,
@@ -21,6 +23,9 @@ const GameInfo = ({ item }: AboutPageProps) => {
   const { name, genres, release_date, short_description, header_image } = item;
   const { t } = useTranslation("about");
 
+  const handleClickButton = () => {
+    alert("해당 기능은 준비중입니다.");
+  };
   return (
     <GameInfoWrapper>
       <GameInfoContainer>
@@ -34,6 +39,15 @@ const GameInfo = ({ item }: AboutPageProps) => {
                 <GameInfoHashtag key={`${text}_${idx}`} text={text} />
               ))}
             </GameInfoHashTags>
+
+            <GameInfoButtons>
+              <GameInfoButton onClick={handleClickButton}>
+                {t("about_info_button_goGame")}
+              </GameInfoButton>
+              <GameInfoButton onClick={handleClickButton}>
+                {t("about_info_button_share")}
+              </GameInfoButton>
+            </GameInfoButtons>
           </GameInfoContent>
           <GameInfoImg url={header_image} />
         </GameInfoHeader>
