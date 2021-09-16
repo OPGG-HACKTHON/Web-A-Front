@@ -1,0 +1,5 @@
+{
+  "error_desc_404": "You entered an address that does not exist,\n or The address of the requested page has been changed or deleted and cannot be found.",
+  "error_desc_500": "The page could not be displayed due to a temporary server error.\nPlease try again in a few minutes.",
+  "error_button": "Home"
+}

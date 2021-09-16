@@ -1,19 +1,34 @@
-import React from "react";
 import App from "next/app";
+import { appWithTranslation } from "next-i18next";
 import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
+
+import LocaleProvider from "components/LocaleProvider";
+import Header from "components/Header";
+import PageWrapper from "components/PageWrapper";
+import Footer from "components/Footer";
 import GlobalStyle from "style/GlobalStyle";
+import theme from "style/theme";
 
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
 
     return (
-      <RecoilRoot>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </RecoilRoot>
+      <LocaleProvider>
+        <ThemeProvider {...{ theme }}>
+          <RecoilRoot>
+            <Header />
+            <PageWrapper>
+              <Component {...pageProps} />
+            </PageWrapper>
+            <Footer />
+            <GlobalStyle />
+          </RecoilRoot>
+        </ThemeProvider>
+      </LocaleProvider>
     );
   }
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
