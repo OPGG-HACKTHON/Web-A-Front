@@ -12,6 +12,8 @@ import { VideoCarousel } from "components/About/VideoCarousel";
 import { GameInfo } from "components/About/GameInfo";
 import { Carousel } from "components/Main/Carousel";
 import { useAxios } from "hooks/useAxios";
+import { Review } from "components/About/Review";
+
 export interface AboutPageProps {
   item: {
     id: number;
@@ -76,6 +78,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ item }) => {
       <GameInfo {...{ item }} />
       <VideoCarousel {...{ movies }} />
       <PreviewCarousel thumbnailList={item.screenshots} />
+      <Review id={item.id} />
       <Carousel
         aboutPage
         {...{ recommendList: random_rec_list, onScreenCount: 4 }}

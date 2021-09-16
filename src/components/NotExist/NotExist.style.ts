@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const VideoNotExistWrapper = styled.div`
+const NotExistWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
-const VideoNotExistContainer = styled.div`
+const NotExistContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,4 +22,4 @@ const NotExistText = styled.div`
   margin: 2rem;
 `;
 
-export { VideoNotExistWrapper, NotExistText, VideoNotExistContainer };
+export { NotExistWrapper, NotExistText, NotExistContainer };
