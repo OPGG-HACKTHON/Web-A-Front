@@ -17,7 +17,7 @@ import { ArrowBtn } from "components/ArrowBtn";
 import { CarouselModal } from "components/CarouselModal";
 import { IndexTitle } from "components/IndexTitle";
 import { Modal } from "components/Modal";
-import { VideoNotExist } from "./VideoNotExist";
+import { NotExist } from "components/NotExist";
 
 const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
   const { t } = useTranslation("about");
@@ -111,7 +111,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
             </Modal>
           </>
         ) : (
-          <VideoNotExist />
+          <NotExist text={t("about_video_not_exist")} />
         )}
       </WholeContainer>
     </CarouselWrapper>
