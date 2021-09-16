@@ -11,30 +11,30 @@ interface IReviewProps {
   id: number;
 }
 
-const mock = [
-  {
-    recommendationid: "",
-    author: { steamid: "" },
-    review: "진짜 핵이 너무 많음.",
-    timestamp_created: 1631123234,
-    voted_up: false,
-  },
-  {
-    recommendationid: "",
-    author: { steamid: "" },
-    review:
-      "This game is older than half of the steam community users, love it.",
-    timestamp_created: 1631273637,
-    voted_up: true,
-  },
-  {
-    recommendationid: "",
-    author: { steamid: "" },
-    review: "굿",
-    timestamp_created: 1631273637,
-    voted_up: true,
-  },
-];
+// const mock = [
+//   {
+//     recommendationid: "",
+//     author: { steamid: "" },
+//     review: "진짜 핵이 너무 많음.",
+//     timestamp_created: 1631123234,
+//     voted_up: false,
+//   },
+//   {
+//     recommendationid: "",
+//     author: { steamid: "" },
+//     review:
+//       "This game is older than half of the steam community users, love it.",
+//     timestamp_created: 1631273637,
+//     voted_up: true,
+//   },
+//   {
+//     recommendationid: "",
+//     author: { steamid: "" },
+//     review: "굿",
+//     timestamp_created: 1631273637,
+//     voted_up: true,
+//   },
+// ];
 
 const Review: React.FC<IReviewProps> = () => {
   const { t } = useTranslation("about");
