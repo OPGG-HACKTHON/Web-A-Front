@@ -38,6 +38,30 @@ export const GameInfoHashTags = styled.div`
   flex-wrap: wrap;
 `;
 
+export const GameInfoButtons = styled.div`
+  display: flex;
+  margin-top: 2.5rem;
+`;
+
+export const GameInfoButton = styled.button`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2.7rem;
+  padding: 0.4rem 2rem;
+  background-color: transparent;
+  border-radius: 0.8rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: ${({ theme }) => theme.palette.primary.main};
+  border: 0.1rem solid ${({ theme }) => theme.palette.primary.main};
+
+  & + & {
+    margin-left: 1rem;
+  }
+`;
+
 export const GameInfoImg = styled.div<{ url: string }>`
   width: 46rem;
   height: 21.5rem;
