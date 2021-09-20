@@ -36,7 +36,6 @@ const CarouselModal: React.FC<ICarouselModal> = ({
   video,
   videoRef,
 }) => {
-  console.log(itemList[selectedIndex - 1]);
   return (
     <>
       <ModalWrapper>

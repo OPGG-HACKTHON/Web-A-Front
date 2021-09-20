@@ -64,7 +64,7 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
     videoRef?.current?.pause();
     setOpen(false);
   };
-  console.log(movies[selectedIndex]);
+
   return (
     <CarouselWrapper>
       <WholeContainer>
