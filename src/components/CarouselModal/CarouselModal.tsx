@@ -52,7 +52,10 @@ const CarouselModal: React.FC<ICarouselModal> = ({
         </ModalHeader>
         {video ? (
           <>
-            <PickedVideo controls ref={videoRef}>
+            <PickedVideo
+              key={itemList[selectedIndex - 1]}
+              controls
+              ref={videoRef}>
               <source
                 id={itemList[selectedIndex - 1]}
                 src={itemList[selectedIndex - 1]}
@@ -61,7 +64,7 @@ const CarouselModal: React.FC<ICarouselModal> = ({
             </PickedVideo>
             <DotWrapper>
               {itemList.map((item, i) => (
-                <Dot key={`${item}-${i}`} selected={i === selectedIndex} />
+                <Dot key={`${item}-${i}`} selected={i === selectedIndex - 1} />
               ))}
             </DotWrapper>
           </>

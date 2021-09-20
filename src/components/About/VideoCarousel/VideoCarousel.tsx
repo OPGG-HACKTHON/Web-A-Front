@@ -72,7 +72,9 @@ const VideoCarousel: React.FC<{ movies: Array<string> }> = ({ movies }) => {
         {movies.length ? (
           <>
             <CarouselContainer>
-              <SelectedVideo onClick={() => setOpen(true)}>
+              <SelectedVideo
+                key={movies[selectedIndex]}
+                onClick={() => setOpen(true)}>
                 <source src={movies[selectedIndex]} type="video/mp4" />
               </SelectedVideo>
               <VideoListWrapper>
