@@ -11,6 +11,7 @@ import {
   RankingViewHeader,
   RankingViewContents,
   RankingViewAutoScrollWrapper,
+  RankingViewActiveWrapper,
   RankingViewTitle,
   RankingViewText,
   RankingViewImage,
@@ -27,35 +28,32 @@ interface RankingViewProps {
 }
 
 const RankingView = ({ rankingList }: RankingViewProps) => {
-  const [activeNum, setActiveNum] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const [activeY, setActiveY] = useState(0);
 
+  const num = useRef(1);
   const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
-  const scrollRefTop = useRef<HTMLDivElement | null>(null);
-  const scrollRefBottom = useRef<HTMLDivElement | null>(null);
-
-  const entry = useIntersect(scrollWrapperRef, {});
-  const isVisible = !!entry?.isIntersecting; //threshold에 들어왔을때만 setInterval
 
   const { t } = useTranslation("main");
+  const entry = useIntersect(scrollWrapperRef, {});
 
-  const RankingScrollToTop = () => {
-    return <div ref={scrollRefTop} />;
-  };
-  const RankingScrollToBottom = () => {
-    return <div ref={scrollRefBottom} />;
-  };
+  const isVisible = !!entry?.isIntersecting; //threshold에 들어왔을때만 setInterval
 
   useInterval(() => {
     if (isVisible) {
-      if (activeNum === 4) {
-        scrollRefBottom?.current?.scrollIntoView({ behavior: "smooth" });
-      }
+      num.current += 1;
 
-      if (activeNum === 10) {
-        scrollRefTop?.current?.scrollIntoView({ behavior: "smooth" });
-        setActiveNum(0);
-      } else {
-        setActiveNum(activeNum + 1);
+      if (num.current < 6) {
+        setActiveY(activeY + 5);
+      } else if (num.current === 6) {
+        setScrollY(scrollY - 25);
+        setActiveY(0);
+      } else if (num.current >= 7 && num.current <= 10) {
+        setActiveY(activeY + 5);
+      } else if (num.current > 10) {
+        setScrollY(0);
+        setActiveY(0);
+        num.current = 1;
       }
     }
   }, 3000);
@@ -65,29 +63,43 @@ const RankingView = ({ rankingList }: RankingViewProps) => {
       <RankingViewContainer>
         <RankingViewHeader>{t("main_view_ranking_title")}</RankingViewHeader>
         <RankingViewContents>
-          <RankingViewAutoScrollWrapper ref={scrollWrapperRef}>
-            <RankingScrollToTop />
+          <RankingViewAutoScrollWrapper
+            ref={scrollWrapperRef}
+            scrollY={scrollY}>
             {rankingList.map((list, idx) => (
-              <RankingViewTitle key={list.id} isActive={idx === activeNum}>
-                <Link href={`/about/${list.id}`}>
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a>
-                    <RankingViewText>{idx + 1}</RankingViewText>
-                    <RankingViewText> {list.name}</RankingViewText>
-                  </a>
-                </Link>
+              <RankingViewTitle key={list.id}>
+                <RankingViewText>{idx + 1}</RankingViewText>
+                <RankingViewText> {list.name}</RankingViewText>
               </RankingViewTitle>
             ))}
-            <RankingScrollToBottom />
           </RankingViewAutoScrollWrapper>
 
-          <RankingViewImage
-            url={
-              activeNum === 10
-                ? rankingList[0]["header_image"]
-                : rankingList[activeNum]["header_image"]
-            }
-          />
+          <Link
+            href={`/about/${
+              num.current * 1 === 11
+                ? rankingList[0].id
+                : rankingList[num.current * 1 - 1].id
+            }`}>
+            <RankingViewActiveWrapper activeY={activeY} />
+          </Link>
+
+          <Link
+            href={`/about/${
+              num.current * 1 === 11
+                ? rankingList[0].id
+                : rankingList[num.current * 1 - 1].id
+            }`}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a>
+              <RankingViewImage
+                url={
+                  num.current * 1 === 11
+                    ? rankingList[0].header_image
+                    : rankingList[num.current * 1 - 1].header_image
+                }
+              />
+            </a>
+          </Link>
         </RankingViewContents>
       </RankingViewContainer>
     </RankingViewWrapper>
